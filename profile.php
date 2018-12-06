@@ -70,7 +70,7 @@
                   <h6 class="card-text"><i class="fa fa-tags"></i> My Products</h6>
                 </div>
                 <div class="card-body">
-                  <ul class="list-group list-group-flush menu">
+                  <ul class="list-group list-group-flush <?php if( !empty(getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC')) ){echo "menu";} ?>">
   <?php
                     foreach (getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') as $product) {
                       echo "<li class='list-group-item'><a>- " . $product[1] . "</a></li>";
@@ -86,8 +86,15 @@
                 <h6 class="card-text"><i class="fa fa-comments"></i> The Comments</h6>
               </div>
               <div class="card-body">
-                <ul class="list-group list-group-flush menu">
-                  <li class="list-group-item">Test</li>
+                <ul class="list-group list-group-flush <?php if( !empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC')) ){echo "menu";} ?>">
+<?php
+                  if (!empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC'))){
+                    foreach (getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC') as $comment) {
+                      echo "<li class='list-group-item'><a>- " . $comment[1] . "</a></li>";
+                    }
+                  }else {
+                    echo "<li class='list-group-item l-capital'>There is no comments yet.</li>";
+                  } ?>
                 </ul>
               </div>
             </div>
