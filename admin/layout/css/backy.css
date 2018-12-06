@@ -1,0 +1,99 @@
+/* Global */
+*{
+  box-sizing: border-box;
+}
+body, html{
+  margin: 0;
+  padding: 0;
+}
+kbd{
+  display: inline-block;
+}
+.l-capital{
+  text-transform: capitalize;
+}
+.login > h4{
+  margin-top: 150px;
+}
+h3.err{
+  color: red;
+}
+li.nav-item.dropdown{
+  position: absolute;
+  right: 50px;
+}
+li.nav-item .nav-link{
+  text-transform: capitalize;
+}
+.dropdown-menu{
+  left: unset;
+  right: 0;
+}
+div.data a{
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+.form-row{
+  position: relative;
+}
+.negma{
+  position: absolute;
+  top: 7px;
+  right: 2%;
+  font-size: 20px;
+  color: #e74c3c;
+}
+input[type="password"] ~ .negma{
+  position: absolute;
+  top: 7px;
+  right: 55px;
+  font-size: 20px;
+  color: #e74c3c;
+}
+/* Edit And Insert Responsive*/
+@media (max-width: 575.98px){
+ form.float-right, input[type='submit'].btn-primary{
+   float: none !important;
+   width: 100% !important;
+ }
+ div.data{
+   float: none !important;
+ }
+}
+/* Manage page */
+table{
+  -webkit-box-shadow: 0 7px 10px 1px #CCC;
+  -moz-box-shadow: 0 7px 10px 1px #CCC;
+  -o-box-shadow: 0 7px 10px 1px #CCC;
+  box-shadow: 0 7px 10px 1px #CCC;
+}
+table tr td a.btn i{
+  font-size: 13px;
+  position: relative;
+  top: -1px;
+}
+/* Dashboard */
+.card .card-body a, .card .card-body a:hover, .card .card-body a:active{
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+
+.card .card-body ul li:nth-child(odd) {
+  background-color: #EEE;
+}
+/* Categories */
+.cstyle{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -user-select: none;
+  cursor: pointer;
+  color: var(--blue, #007bff);
+}
+.desc-hover{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

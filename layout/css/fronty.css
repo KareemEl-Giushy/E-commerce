@@ -1,0 +1,102 @@
+/* Global */
+*{
+  box-sizing: border-box;
+}
+body, html{
+  margin: 0;
+  padding: 0;
+}
+kbd{
+  display: inline-block;
+}
+.l-capital{
+  text-transform: capitalize;
+}
+.clickedy{
+  background-color: #EEE;
+}
+
+li.nav-item.dropdown , .signs{
+  position: absolute;
+  right: 50px;
+}
+li.nav-item .nav-link{
+  text-transform: capitalize;
+}
+.dropdown-menu, .signs{
+  left: unset;
+  right: 0;
+}
+.form-row{
+  position: relative;
+}
+.negma{
+  position: absolute;
+  top: 7px;
+  right: 2%;
+  font-size: 20px;
+  color: #e74c3c;
+}
+.small-negma{
+  position: absolute;
+  top: 7px;
+  right: 3%;
+  display: none;
+  font-size: 20px;
+  color: #e74c3c;
+  z-index: 1;
+}
+@media (min-width: 0) AND (max-width: 767.98px) {
+  .small-negma{
+    display: inline-block;
+  }
+  input[name='first-name'] ~ .negma, input[name='last-name'] ~ .negma{
+    display: none;
+  }
+}
+
+input[type="password"] ~ .negma{
+  position: absolute;
+  top: 7px;
+  right: 55px;
+  font-size: 20px;
+  color: #e74c3c;
+}
+/* Start Styleing Items */
+.item-title{
+  line-height: 2em;
+  height: 2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.item-desc{
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+/* login sign up form */
+.login-btn, .signup-btn{
+  border: 5px solid #EEE;
+  height: 65px;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background .5s ease-in-out;
+}
+.login-btn:hover, .signup-btn:hover{
+  background-color: #EEE;
+}
+/* profile */
+.menu .list-group-item{
+  cursor: pointer;
+}
+.menu .list-group-item.disabled{
+  cursor: not-allowed;
+}
+.menu .list-group-item:not(.disabled):hover, .menu .list-group-item:not(.disabled):hover a{
+  text-decoration: none;
+  background-color: var(--primary);
+  color: #FFF;
+}
