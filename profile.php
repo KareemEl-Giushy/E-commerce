@@ -42,12 +42,12 @@
       </div>
       <div class="col">
         <h2 class="text-center mb-5 mt-3">My Profile</h2>
-        <div class="about-me menu mb-3">
+        <div class="about-me mb-3">
           <ul class="list-group">
-            <li class="list-group-item l-capital" style="cursor: default;">Username : <?php echo $userinfo[0][1]; ?></li>
-            <li class="list-group-item l-capital" style="cursor: default;">Full Name : <?php echo $userinfo[0][4]; ?></li>
-            <li class="list-group-item" style="cursor: default;">E-Mail : <?php echo $userinfo[0][3]; ?></li>
-            <li class="list-group-item l-capital" style="cursor: default;">Join Date : <?php echo $userinfo[0][5]; ?></li>
+            <li class="list-group-item pl-3 l-capital"><i class="fa fa-unlock-alt fa-fw"></i> Username : <?php echo $userinfo[0][1]; ?></li>
+            <li class="list-group-item pl-3 l-capital"><i class="fa fa-user fa-fw"></i> Full Name : <?php echo $userinfo[0][4]; ?></li>
+            <li class="list-group-item pl-3"><i class="fa fa-envelope fa-fw"></i> E-Mail : <?php echo $userinfo[0][3]; ?></li>
+            <li class="list-group-item pl-3 l-capital"><i class="fa fa-calendar fa-fw"></i> Join Date : <?php echo $userinfo[0][5]; ?></li>
           </ul>
         </div>
         <div class="row">
@@ -72,8 +72,12 @@
                 <div class="card-body">
                   <ul class="list-group list-group-flush <?php if( !empty(getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC')) ){echo "menu";} ?>">
   <?php
-                    foreach (getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') as $product) {
-                      echo "<li class='list-group-item'><a>- " . $product[1] . "</a></li>";
+                    if (!empty( getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') )) {
+                      foreach (getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') as $product) {
+                        echo "<li class='list-group-item'><a>- " . $product[1] . "</a></li>";
+                      }
+                    }else {
+                      echo "<li class='list-group-item l-capital'>- You Don't Have any products. <a href='new_item.php' target='_blank'><i class='fa fa-plus fa-xs'></i> add a item</a></li>";
                     } ?>
                   </ul>
                 </div>
@@ -93,7 +97,7 @@
                       echo "<li class='list-group-item'><a>- " . $comment[1] . "</a></li>";
                     }
                   }else {
-                    echo "<li class='list-group-item l-capital'>There is no comments yet.</li>";
+                    echo "<li class='list-group-item l-capital'>- you don't have any comments yet.</li>";
                   } ?>
                 </ul>
               </div>

@@ -55,5 +55,23 @@ $(function (){
     }
   });
 
-  
+  /* Add New item page LiveShow */
+
+  // item name
+  $('input[name="itemname"]').keyup(function (){
+    $('.card .card-body h6.card-title').text($(this).val());
+  });
+
+  // item description
+  $('textarea[name="description"]').keyup(function (){
+    $('.card .card-body p.item-desc').text($(this).val());
+  });
+
+  // The price
+  $('input[name="price"]').keyup(function (){
+    if ($(this).val() < 0) {
+      var pnum = Math.abs($(this).val());
+    }
+    $('.card .card-header h5.card-text').text(pnum + '$');
+  });
 });

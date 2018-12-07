@@ -37,12 +37,14 @@
 
       // The full name
       if (isset($_POST['first-name']) && isset($_POST['last-name'])) {
+
         if (empty($_POST['first-name'])) {
           $formerrors[] = "<div class= 'alert alert-danger l-capital'>The first name can't be <strong>empty</strong></div>";
         }
         if (empty($_POST['last-name'])) {
           $formerrors[] = "<div class= 'alert alert-danger l-capital'>The last name can't be <strong>empty</strong></div>";
         }
+
         $theuser = $_POST['first-name'] ." ". $_POST['last-name'];
         $newuser = filter_var($theuser, FILTER_SANITIZE_STRING);
 
@@ -50,9 +52,10 @@
         if (empty($newuser)) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The <strong>Full-Name</strong> you entered can't be empty</div>";
         }
-        if (strlen($newuser) > 6) {
+        if (strlen($newuser) < 6) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The <strong>Full-Name</strong> you entered can't be less than 6 characters</div>";
         }
+
       }else {
         $formerrors[] = "<div class='alert alert-danger l-capital'>There aren't any fields to validate</div>";
       }
@@ -65,9 +68,13 @@
         if (empty($newusername)) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The <strong>username</strong> can't be empty</div>";
         }
+        if ( preg_match('/\s/',$newusername) ){
+          $formerrors[] = "<div class='alert alert-danger l-capital'>The username <srtong>mustn't have whitespaces</strong></div>";
+        }
         if (strlen($newusername) < 4) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The <strong>Username</strong> you entered can't be less than 4 characters</div>";
         }
+
       }else {
         $formerrors[] = "<div class='alert alert-danger l-capital'>There aren't any fields to validate</div>";
       }
@@ -75,15 +82,18 @@
       // E-mail
       if (isset($_POST['e-mail'])) {
         $new_email = filter_var($_POST['e-mail'], FILTER_SANITIZE_EMAIL);
+
         if (filter_var($new_email, FILTER_VALIDATE_EMAIL) == false) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The e-mail you entered isn't <strong>valid</strong></div>";
         }
+
       }else {
         $formerrors[] = "<div class='alert alert-danger l-capital'>There aren't any fields to validate</div>";
       }
 
       // Password
       if (isset($_POST['pass']) && isset($_POST['re-pass'])) {
+
         // Password empty validate
         if (empty($_POST['pass']) || empty($_POST['re-pass'])) {
           $formerrors[] = "<div class='alert alert-danger l-capital'><strong>The password can't be empty</strong></div>";
@@ -99,12 +109,31 @@
         if ($pass !== $re_pass) {
           $formerrors[] = "<div class='alert alert-danger l-capital'>The two passwords don't <strong>match with each other</strong></div>";
         }
+
       }else {
         $formerrors[] = "<div class='alert alert-danger l-capital'>There aren't any fields to validate</div>";
       }
 
       // Display the errors
-      if (!empty($formerrors)){$act = 'signup-form';}
+      if (empty($formerrors)){
+        if (checkuser('username', 'users', $newusername) == false) {
+          $stmt = $con->prepare("INSERT INTO users(username, password, email, fullname, `date`) VALUES(:nuser, :npass, :nemail, :nfullname, now())");
+          $stmt->execute([
+            'nuser' => $newusername,
+            'npass' => $pass,
+            'nemail' => $new_email,
+            'nfullname' => $newuser
+          ]);
+
+          //success message
+          $sumass = "<div class='alert alert-success l-capital'>Thank you for signing up to our site you can now login :).</div>";
+        }else {
+          $act = 'signup-form';
+          $formerrors[] = "<div class='alert alert-danger l-capital'>The username you entered is <strong>already exists</strong></div>";
+        }
+      }else {
+        $act = 'signup-form';
+      }
     }else {
       header("location: index.php");
       exit();
@@ -136,7 +165,10 @@
           </div>
           <input type="submit" class="form-control col-12 col-sm-12 col-lg-6 m-auto d-block" name='login' value="Login" style="cursor: pointer;">
           <?php if (isset($rowcount) && $rowcount <= 0) {
-                  echo "<div class='alert alert-danger text-center l-capital mt-3'>*Sorry, Username or password you entered is wrong</div>";
+                  echo "<div class='alert alert-danger text-center l-capital mt-3'>*invalid Username or password</div>";
+                }
+                if (isset($sumass)) {
+                  echo $sumass;
                 } ?>
         </form>
       </div>

@@ -1,7 +1,7 @@
 <?php
   ob_start();
   session_start();
-  $pagetitle = "Profile";
+  $pagetitle = "Users";
   $color = 'rgba(0, 0, 0, 0.5)';
   if (isset($_SESSION['user'])){
     // includes
