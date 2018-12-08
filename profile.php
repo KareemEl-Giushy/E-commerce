@@ -74,7 +74,7 @@
   <?php
                     if (!empty( getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') )) {
                       foreach (getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') as $product) {
-                        echo "<li class='list-group-item'><a>- " . $product[1] . "</a></li>";
+                        echo "<li class='list-group-item'><a href='item.php?itemid=$product[0]'>- " . $product[1] . "</a></li>";
                       }
                     }else {
                       echo "<li class='list-group-item l-capital'>- You Don't Have any products. <a href='new_item.php' target='_blank'><i class='fa fa-plus fa-xs'></i> add a item</a></li>";

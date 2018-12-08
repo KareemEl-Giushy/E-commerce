@@ -46,6 +46,14 @@ li.nav-item .nav-link{
   color: #e74c3c;
   z-index: 1;
 }
+.date-tag{
+  position: absolute;
+  top: 49px;
+  left: 0;
+  background: var(--gray);
+  color: #fff;
+  padding: 5px;
+}
 @media (min-width: 0) AND (max-width: 767.98px) {
   .small-negma{
     display: inline-block;

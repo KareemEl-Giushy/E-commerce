@@ -16,12 +16,13 @@
             echo "<div class='card-header'>";
               echo "<h5 class='card-text text-center'>$item[3]</h5>";
             echo "</div>";
+            echo "<div class='card-text date-tag'>" . $item[4] . "</div>";
             echo "<img class='card-img-top img-fluid' src='data/uploads/default.png' alt='$item[1]'/>";
             echo "<div class='card-body'>";
               echo "<h6 class='card-title item-title'>" . $item[1] . "</h6>";
               echo "<p class='card-text item-desc'>" . $item[2] . "</p>";
               echo "<div class='card-footer'>";
-              echo "<a class='btn btn-primary d-block' href='#'>View</a>";
+              echo "<a class='btn btn-primary d-block' href='item.php?itemid=$item[0]'>View</a>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
