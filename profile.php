@@ -33,10 +33,10 @@
         </div>
         <div class="menu col-12 p-0">
           <ul class="list-group">
-            <li class="list-group-item"><a href="#"><i class="fa fa-shopping-cart"></i> My Orders</a></li>
-            <li class="list-group-item <?php if(checkuserstatus($_SESSION['norid']) == false){echo "disabled";} ?>"><a <?php if(checkuserstatus($_SESSION['norid']) == true){echo "href='#'";} ?> ><i class="fa fa-tags"></i> My Products</a></li>
-            <li class="list-group-item"><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
-            <li class="list-group-item"><a href="#"><i class="fa fa-user"></i> Memberships</a></li>
+            <li class="list-group-item"><a class="d-block" href="#"><i class="fa fa-shopping-cart"></i> My Orders</a></li>
+            <li class="list-group-item <?php if(checkuserstatus($_SESSION['norid']) == false){echo "disabled";} ?>"><a class="d-block" <?php if(checkuserstatus($_SESSION['norid']) == true){echo "href='my_products.php'";} ?> ><i class="fa fa-tags"></i> My Products</a></li>
+            <li class="list-group-item"><a class="d-block" href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+            <li class="list-group-item"><a class="d-block" href="#"><i class="fa fa-user"></i> Memberships</a></li>
           </ul>
         </div>
       </div>
@@ -94,7 +94,7 @@
 <?php
                   if (!empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC'))){
                     foreach (getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC') as $comment) {
-                      echo "<li class='list-group-item'><a>- " . $comment[1] . "</a></li>";
+                      echo "<a href='item.php?itemid=" . $comment[4] . "' style='text-decoration: none;'><li class='list-group-item'>- " . $comment[1] . "</li></a>";
                     }
                   }else {
                     echo "<li class='list-group-item l-capital'>- you don't have any comments yet.</li>";

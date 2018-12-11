@@ -69,9 +69,14 @@ $(function (){
 
   // The price
   $('input[name="price"]').keyup(function (){
-    if ($(this).val() < 0) {
-      var pnum = Math.abs($(this).val());
+    var pnum = $(this).val();
+    if (Number($(this).val()) < 0) {
+      var pnum = Math.abs(Number($(this).val()));
     }
-    $('.card .card-header h5.card-text').text(pnum + '$');
+    if (!isNaN(pnum)) {
+      $('.card .card-header h5.card-text').text(pnum + '$');
+    }else {
+      $('.card .card-header h5.card-text').text('Numbers Only');
+    }
   });
 });
