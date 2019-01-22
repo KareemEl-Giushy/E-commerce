@@ -40,8 +40,8 @@
               echo "<td>" . $item[3] . "</td>";
               echo "<td>" . $item[4] . "</td>";
               echo "<td>" . $item[7] . "</td>";
-              echo "<td>" . $item[12] . "</td>";
               echo "<td>" . $item[13] . "</td>";
+              echo "<td>" . $item[14] . "</td>";
               echo "<td>
                 <a class='btn btn-success m-0' href='?act=edit&itemid=" . $item[0] . "'><i class='fa fa-edit'></i></a>
                 <a class='confirm btn btn-danger m-1' href='?act=delete&itemid=" . $item[0] . "'><i class='fa fa-trash'></i></a>";
@@ -79,7 +79,7 @@
               </div>
               <div class="form-row mb-3">
                 <label class='col col-form-label'>Price</label>
-                <input type="text" name="price" class="form-control col-12 col-sm-12 col-md-9 col-lg-9" required value="<?php echo $iteminfo[3]; ?>">
+                <input type="text" name="price" class="form-control col-12 col-sm-12 col-md-9 col-lg-9" required value="<?php echo $iteminfo[3]; ?>$">
               </div>
               <div class="form-row mb-3">
                 <label class='col col-form-label'>Status</label>
@@ -117,19 +117,36 @@
                 <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                   <select class="form-control" name='categories'>
                     <option value="0">...</option>
-<?php
-                    $stmt = $con->prepare("SELECT cid, cname FROM categories");
+  <?php
+                    $stmt = $con->prepare("SELECT cid, cname FROM categories WHERE parent = 0");
                     $stmt->execute();
                     $catesinfo = $stmt->fetchAll();
                     foreach ($catesinfo as $cate){
-                      if ($cate[0] == $iteminfo["Cat_ID"]) {
+                      if ($iteminfo[10] == $cate[0]) {
                         echo "<option value='" . $cate[0] . "' selected>" . $cate[1] . "</option>";
                       }else {
                         echo "<option value='" . $cate[0] . "'>" . $cate[1] . "</option>";
+                       }
+
+                      if ( !empty( opened_func("SELECT * FROM categories WHERE parent = {$cate[0]} ORDER BY cid") ) ) {
+                        echo "<optgroup label='" . $cate[1] . "'>";
+                        foreach( opened_func("SELECT * FROM categories WHERE parent = {$cate[0]} ORDER BY cid") as $subcate ){
+                          if ($iteminfo[10] == $subcate[0]) {
+                            echo "<option value='" . $subcate[0] . "' selected>  - " . $subcate[1] . "</option>";
+                          }else {
+                            echo "<option value='" . $subcate[0] . "'>  - " . $subcate[1] . "</option>";
+                          }
+                        }
+                        echo "</optgroup>";
                       }
-                    }?>
+                      echo "<optgroup label='----------'></optgroup>";
+                    } ?>
                   </select>
                 </div>
+              </div>
+              <div class="form-row mb-3">
+                <label class="col col-form-label">Tags</label>
+                <input type="text" name="tags" value="<?php echo $iteminfo[12]; ?>" class="form-control col-12 col-sm-12 col-md-9 col-lg-9" placeholder="Saparate Tags With Comma ( , ) (Optional)">
               </div>
               <input type="submit" Value="Update Item" class="btn btn-primary float-sm-none float-md-right mt-2 col-md-3 col-12 col-sm-12">
             </form>
@@ -487,14 +504,26 @@
                 <select class="form-control" name='categories'>
                   <option value="0">...</option>
 <?php
-                  $stmt = $con->prepare("SELECT cid, cname FROM categories");
+                  $stmt = $con->prepare("SELECT cid, cname FROM categories WHERE parent = 0");
                   $stmt->execute();
                   $catesinfo = $stmt->fetchAll();
                   foreach ($catesinfo as $cate){
                     echo "<option value='" . $cate[0] . "'>" . $cate[1] . "</option>";
-                  }?>
+                    if ( !empty( opened_func("SELECT * FROM categories WHERE parent = {$cate[0]} ORDER BY cid") ) ) {
+                      echo "<optgroup label='" . $cate[1] . "'>";
+                      foreach( opened_func("SELECT * FROM categories WHERE parent = {$cate[0]} ORDER BY cid") as $subcate ){
+                          echo "<option value='" . $subcate[0] . "'>  - " . $subcate[1] . "</option>";
+                      }
+                      echo "</optgroup>";
+                    }
+                    echo "<optgroup label='----------'></optgroup>";
+                  } ?>
                 </select>
               </div>
+            </div>
+            <div class="form-row mb-3">
+              <label class="col col-form-label">Tags</label>
+              <input type="text" name="tags" class="form-control col-12 col-sm-12 col-md-9 col-lg-9" placeholder="Saparate Tags With Comma ( , ) (Optional)">
             </div>
             <!-- <div class="form-row mb-3">
               <label class='col col-form-label'>Rating</label>
@@ -520,10 +549,11 @@
         $itemGetId        = $_POST['theid'];
         $item_name        = $_POST['itemname'];
         $description      = $_POST['description'];
-        $price            = $_POST['price'];
+        $price            = str_replace('$', "", $_POST['price']);
         $status           = $_POST['status'];
         $category         = $_POST["categories"];
         $member_selected  = $_POST["members"];
+        $tags             = strtolower(filter_var($_POST['tags'], FILTER_SANITIZE_STRING));
 
         if (!empty($itemGetId)) {
 
@@ -554,14 +584,15 @@
           $errors[] = "<div class='alert alert-danger l-capital'>The Member field can't be <strong>empty</strong></div>";
         }
         if (empty($errors)) {
-          $stmt = $con->prepare("UPDATE items SET itemname = :iname, description = :idesc, price = :iprice, status = :istatus, Cat_ID = :icid, Member_ID = :imid WHERE itemid = $itemGetId");
+          $stmt = $con->prepare("UPDATE items SET itemname = :iname, description = :idesc, price = :iprice, status = :istatus, Cat_ID = :icid, Member_ID = :imid, tags = :tags WHERE itemid = $itemGetId");
           $stmt->execute([
             "iname" => $item_name,
             "idesc" => $description,
-            "iprice" => $price,
+            "iprice" => "$" . $price,
             "istatus" => $status,
             "icid" => $category,
-            "imid" => $member_selected
+            "imid" => $member_selected,
+            'tags' => $tags
           ]);
           header("location: ?act=edit&itemid=$itemGetId");
         }else {
@@ -581,12 +612,13 @@
 
         $item_name        = $_POST['itemname'];
         $description      = $_POST['description'];
-        $price            = $_POST['price'];
+        $price            = str_replace("$", "", $_POST['price']);
         $made_country     = $_POST['country'];
         $status           = $_POST['status'];
         // $rate = $_POST['rating'];
         $category         = $_POST["categories"];
         $member_selected  = $_POST["members"];
+        $tags             = strtolower(filter_var($_POST["tags"], FILTER_SANITIZE_STRING));
 
         $errors = [];
         if (empty($item_name)){
@@ -611,15 +643,16 @@
           $errors[] = "<div class='alert alert-danger l-capital'>The Member field can't be <strong>empty</strong></div>";
         }
         if (empty($errors)){
-          $stmt = $con->prepare("INSERT INTO items (itemName, description, price, uDate, madein, status, cat_id, member_id, approve) VALUES(:iname, :idesc, :iprice, now(), :imadein, :istatus, :catid, :memberid, 1)");
+          $stmt = $con->prepare("INSERT INTO items (itemName, description, price, uDate, madein, status, cat_id, member_id, approve, tags) VALUES(:iname, :idesc, :iprice, now(), :imadein, :istatus, :catid, :memberid, 1, :tags)");
           $stmt->execute([
             "iname" => $item_name,
             "idesc" => $description,
-            "iprice" => $price,
+            "iprice" => "$" . $price,
             "imadein" => $made_country,
             "istatus" => $status,
             "catid" => $category,
-            "memberid" => $member_selected
+            "memberid" => $member_selected,
+            'tags' => $tags
           ]);
           header("location: ?act=add");
         }else {

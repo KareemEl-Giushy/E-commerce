@@ -15,7 +15,15 @@ kbd{
 .clickedy{
   background-color: #EEE;
 }
-
+.user-img{
+  max-height: 190px;
+  object-fit: cover;
+}
+.item-img{
+  max-height: 348px;
+  height: 348px;
+  object-fit: cover;
+}
 li.nav-item.dropdown , .signs{
   position: absolute;
   right: 50px;

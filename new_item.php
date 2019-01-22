@@ -10,6 +10,10 @@
   include "includes/templates/header.php";
   include "includes/templates/navbar.php";
 
+  if (checkuserstatus($_SESSION['norid']) == false) {
+    gohome("<strong>you aren't activated yet</strong>");
+  }
+
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $itemname     = filter_var($_POST['itemname'], FILTER_SANITIZE_STRING);
     $description  = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
@@ -17,7 +21,9 @@
     $country      = filter_var($_POST['country'], FILTER_SANITIZE_STRING);
     $status       = filter_var($_POST['status'], FILTER_SANITIZE_STRING);
     $category     = filter_var($_POST['categories'], FILTER_SANITIZE_NUMBER_INT);
+    $tags         = strtolower(filter_var($_POST['tags'], FILTER_SANITIZE_STRING));
 
+    $errors = [];
     // itemname validate
     if (empty($itemname)){
       $errors[] = "<div class='alert alert-danger l-capital'>The item name can't be <strong>empty</strong></div>";
@@ -32,7 +38,7 @@
     if (empty($price)) {
       $price = 0 . "$";
     }
-    if (!is_numeric($price) || is_float($price)) {
+    if (!is_numeric($price)) {
       $errors[] = "<div class='alert alert-danger l-capital'>The price is invalid <strong>(must be a number)</strong></div>";
     }
 
@@ -62,16 +68,78 @@
     if (empty($errors)){
       $price = strval($price) . '$';
 
-      $stmt = $con->prepare("INSERT INTO items(itemname, description, price, udate, madein, status, cat_id, member_id) VALUES(:iname, :idesc, :iprice, now(), :icountry, :istatus, :catid, :memberid)");
-      $stmt->execute([
-        'iname' => $itemname,
-        'idesc' => $description,
-        'iprice' => $price,
-        'icountry' => $country,
-        'istatus' => $status,
-        'catid' => $category,
-        'memberid' => $_SESSION['norid']
-      ]);
+      // ============== image uploading system ==============
+      // cheack if the field is set or not
+      $img_errors = [];
+      if (isset($_FILES['item-img'])) {
+        $img = $_FILES['item-img'];
+      }else {
+        $img_errors[] = "<div class='alert alert-danger l-capital'>The img field isn't <strong>exist</strong></div>";
+      }
+      if (empty($img)) {
+        $img_errors[] = "<div class='alert alert-danger l-capital'>You must upload an <strong>image</strong></div>";
+      }
+
+      if (!empty($img) && empty($img_errors)) {
+        $allowed_extintions = ['jpg', 'jpeg', 'png', 'gif'];
+        $img_ext_arr = explode(".", $img['name']);
+        $img_ext = strtolower(end($img_ext_arr));
+
+        // validations
+        if (!in_array($img_ext, $allowed_extintions)) {
+          $img_errors[] = "<div class='alert alert-danger l-capital'>This type of the image isn't <strong>allowed</strong></div>";
+        }
+        if ($img['size'] > 4194304) {
+          $img_errors[] = "<div class='alert alert-danger l-capital'>This image is <strong>too big</strong></div>";
+        }
+
+        // uploading the img
+        if (empty($img_errors)) {
+          $img_name = rand(0,1000000) . "_" . $img['name'];
+
+          if (is_dir(__dir__ . '/data/item-imgs')) {
+            move_uploaded_file($img['tmp_name'], __dir__ . '/data/item-imgs/' . $img_name);
+
+            // insert into the database
+            $stmt = $con->prepare("INSERT INTO items(itemname, description, price, udate, madein, status, cat_id, member_id, tags, `item-img`) VALUES(:iname, :idesc, :iprice, now(), :icountry, :istatus, :catid, :memberid, :tags, :itemimg)");
+            $stmt->execute([
+              'iname' => $itemname,
+              'idesc' => $description,
+              'iprice' => $price,
+              'icountry' => $country,
+              'istatus' => $status,
+              'catid' => $category,
+              'memberid' => $_SESSION['norid'],
+              'tags' => $tags,
+              'itemimg' => $img_name
+            ]);
+
+            $img_errors[] = "<div class='alert alert-success l-capital'>the item image had been uploaded <strong>successfully</strong></div>";
+
+          }else {
+            mkdir(__dir__ . '/data/item-imgs');
+            move_uploaded_file($img['tmp_name'], __dir__ . '/data/item-imgs/' . $img_name);
+
+            // insert into the database
+            $stmt = $con->prepare("INSERT INTO items(itemname, description, price, udate, madein, status, cat_id, member_id, tags, `item-img`) VALUES(:iname, :idesc, :iprice, now(), :icountry, :istatus, :catid, :memberid, :tags, :itemimg)");
+            $stmt->execute([
+              'iname' => $itemname,
+              'idesc' => $description,
+              'iprice' => $price,
+              'icountry' => $country,
+              'istatus' => $status,
+              'catid' => $category,
+              'memberid' => $_SESSION['norid'],
+              'tags' => $tags,
+              'itemimg' => $img_name
+            ]);
+
+            $img_errors[] = "<div class='alert alert-success l-capital'>the item image had been uploaded <strong>successfully</strong></div>";
+          }
+
+        }
+      }
+      // ================== end the uploading system ======================
     }
   }
   ?>
@@ -79,14 +147,14 @@
   <h2 class='text-center mb-5 mt-4 l-capital'>Add new item</h2>
   <div class="container">
     <div class="row">
-      <form class="form-group w-75 col-12 col-sm-12 col-md-7 col-lg-8" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+      <form class="form-group w-75 col-12 col-sm-12 col-md-7 col-lg-8" action="<?php htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <div class="form-row mb-3">
           <label class='col col-form-label'>Item Name</label>
-          <input type="text" name="itemname" class="form-control col-12" required>
+          <input type="text" name="itemname" class="form-control col-12" pattern=".{4,}" title="this field required at least 4 characters" required>
         </div>
         <div class="form-row mb-3">
           <label class='col col-form-label'>Description</label>
-          <textarea type="text" name="description" class="form-control col-12" required></textarea>
+          <textarea type="text" name="description" pattern=".{10,}" title="this field required at least 10 characters" class="form-control col-12" required></textarea>
           <span class="negma">*</span>
         </div>
         <div class="form-row mb-3">
@@ -96,7 +164,7 @@
         <div class="form-row mb-3">
           <label class='col col-form-label'>Made In</label>
           <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-            <select class="form-control" name='country'>
+            <select class="form-control" name='country' required>
               <option>Select A Country</option>
               <option value="AF">Afghanistan</option>
               <option value="AX">Åland Islands</option>
@@ -353,7 +421,7 @@
         <div class="form-row mb-3">
           <label class='col col-form-label'>Status</label>
           <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-            <select class="form-control" name='status'>
+            <select class="form-control" name='status' required>
               <option>Status</option>
               <option value="new">Band-New</option>
               <option value="like-new">Like-New</option>
@@ -365,7 +433,7 @@
         <div class="form-row mb-3">
           <label class='col col-form-label'>Categories</label>
           <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-            <select class="form-control" name='categories'>
+            <select class="form-control" name='categories' required>
               <option value="0">...</option>
 <?php
               $stmt = $con->prepare("SELECT cid, cname FROM categories");
@@ -377,6 +445,14 @@
             </select>
           </div>
         </div>
+        <div class="form-row mb-3">
+          <label class="col col-form-label">Item Image</label>
+          <input type="file" name="item-img" class="col-12 col-sm-12 col-md-9 col-lg-9" required>
+        </div>
+        <div class="form-row mb-3">
+          <label class="col col-form-label">Tags</label>
+          <input type="text" name="tags" class="form-control col-12 col-sm-12 col-md-9 col-lg-9" placeholder="Saparate Tags With Comma ( , ) (Optional)">
+        </div>
         <input type="submit" Value="Add Item" class="btn btn-primary float-sm-none float-md-right mt-2 col-md-3 col-12 col-sm-12">
         <div class="errors" style="margin-top: 75px;">
 <?php
@@ -386,7 +462,12 @@
             }
           }
           if (empty($errors) && isset($errors)){
-            echo "<div class='alert alert-success l-capital'>The item was added successfully</div>";
+            echo "<div class='alert alert-success l-capital'>The item was added <strong>successfully</strong></div>";
+          }
+          if (isset($img_errors) && !empty($img_errors)) {
+            foreach ($img_errors as $imgerror) {
+              echo $imgerror;
+            }
           } ?>
         </div>
       </form>
@@ -396,7 +477,7 @@
           <div class='card-header'>
           <h5 class='card-text text-center'></h5>
           </div>
-          <img class='card-img-top img-fluid' src='data/uploads/default.png' alt=''/>
+          <img class='card-img-top img-fluid' src='data/default.png' alt=''/>
           <div class='card-body'>
             <h6 class='card-title item-title'></h6>
             <p class='card-text item-desc'></p>

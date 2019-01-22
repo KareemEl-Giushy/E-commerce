@@ -33,13 +33,13 @@
             <div class='card-footer'>
 <?php
               echo"<div class='statuses flex-row mb-2'>";
-              if ($cat[4] >= 1){
+              if ($cat[5] >= 1){
                 echo "<span class='l-capital justify-content-center justify-content-md-left d-flex d-md-inline-flex pr-1 pb-1'><kbd class='bg-dark'><i class='fa fa-eye'></i> Visible</kbd></span>";
               }
-              if ($cat[5] >= 1){
+              if ($cat[6] >= 1){
                 echo "<span class='l-capital justify-content-center justify-content-md-left d-flex d-md-inline-flex pr-1 pb-1'><kbd class='bg-secondary'><i class='fa fa-comment'></i> Allow-comments</kbd></span>";
               }
-              if ($cat[6] >= 1) {
+              if ($cat[7] >= 1) {
                 echo "<span class='l-capital justify-content-center justify-content-md-left d-flex d-md-inline-flex'><kbd class='bg-info'><i class='fa fa-credit-card'></i> Allow-ads</kbd></span>";
               }
               echo "</div>";?>
@@ -68,6 +68,20 @@
           <div class="form-row mb-3">
             <label class="col col-form-label">Ordering</label>
             <input type="number" name='ordering' class="form-control col-12 col-sm-12 col-md-9" placeholder="The Oreder Of The Category">
+          </div>
+          <div class="form-row mb-3">
+            <label class="col col-form-label">Parent ?</label>
+            <div class="col-12 col-sm-12 col-md-9">
+              <select name="parent">
+                <option value="0">none</option>
+<?php
+                if ( !empty( opened_func("SELECT * FROM categories WHERE parent = 0 ORDER BY cid ASC") ) ){
+                  foreach (opened_func("SELECT * FROM categories WHERE parent = 0 ORDER BY cid ASC") as $cate) {
+                    echo "<option value='" . $cate[0] . "'>" . $cate[1] . "</option>";
+                  }
+                } ?>
+              </select>
+            </div>
           </div>
           <div class="form-row mb-3">
             <label class="col col-form-label">Visiblity</label>
@@ -114,27 +128,29 @@
 <?php
     }elseif ($act == 'insert'){
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $catname = $_POST['name'];
-        $describe = $_POST['descrioption'];
-        $order = $_POST['ordering'];
-        $visiblity = $_POST['visiblitiy'];
-        $allow_comments = $_POST['comments'];
-        $allow_ads = $_POST['ads'];
+        $catname          = $_POST['name'];
+        $describe         = $_POST['descrioption'];
+        $parent           = $_POST['parent'];
+        $order            = $_POST['ordering'];
+        $visiblity        = $_POST['visiblitiy'];
+        $allow_comments   = $_POST['comments'];
+        $allow_ads        = $_POST['ads'];
 
         if (!empty($catname)) {
           $checku = checkuser('cname','categories', $catname);
           if ($checku == false) {
-            $stmt = $con->prepare("INSERT INTO categories (cname, description, ordering, visibility, `allow-comments`, `allow-ads`) VALUES(:name, :des, :order, :visible, :comment, :ads)");
+            $stmt = $con->prepare("INSERT INTO categories (cname, description, parent, ordering, visibility, `allow-comments`, `allow-ads`) VALUES(:name, :des, :parent, :order, :visible, :comment, :ads)");
             $stmt->execute([
               'name' => $catname,
               'des' => $describe,
+              'parent'=> $parent,
               'order' => $order,
               'visible' => $visiblity,
               'comment' => $allow_comments,
               'ads' => $allow_ads
             ]);
             $stmt->rowCount();
-            header("location: ?act=add");
+            header("location: ?act=manage");
           }else {
             echo "<div class='container'>";
             echo "<h2 class='text-center mt-3 mb-5'>Add Error</h2>";
@@ -175,18 +191,36 @@
           </div>
           <div class="form-row mb-3">
             <label class="col col-form-label">Ordering</label>
-            <input type="number" name='ordering' value="<?php echo $catrow[3]; ?>" class="form-control col-12 col-sm-12 col-md-9" placeholder="The Oreder Of The Category">
+            <input type="number" name='ordering' value="<?php echo $catrow[4]; ?>" class="form-control col-12 col-sm-12 col-md-9" placeholder="The Oreder Of The Category">
+          </div>
+          <div class="form-row mb-3">
+            <label class="col col-form-label">Parent ?</label>
+            <div class="col-12 col-sm-12 col-md-9">
+              <select name="parent">
+                <option value="0">none</option>
+<?php
+                if ( !empty( opened_func("SELECT * FROM categories WHERE parent = 0 ORDER BY cid ASC") ) ){
+                  foreach (opened_func("SELECT * FROM categories WHERE parent = 0 ORDER BY cid ASC") as $cate) {
+                    if ($catrow[3] == $cate[0]) {
+                      echo "<option value='" . $cate[0] . "' selected>" . $cate[1] . "</option>";
+                    }else {
+                      echo "<option value='" . $cate[0] . "'>" . $cate[1] . "</option>";
+                    }
+                  }
+                } ?>
+              </select>
+            </div>
           </div>
           <div class="form-row mb-3">
             <label class="col col-form-label">Visiblity</label>
             <div class="col-12 col-md-9">
               <div class="checky d-inline d-md-block">
                 <label for="yes">Yes</label>
-                <input type="radio" name='visiblitiy' value="1" class="" id='yes' <?php if($catrow[4] == 1){ echo "checked";} ?>>
+                <input type="radio" name='visiblitiy' value="1" class="" id='yes' <?php if($catrow[5] == 1){ echo "checked";} ?>>
               </div>
               <div class="checky d-inline">
                 <label for="no">No</label>
-                <input type="radio" name='visiblitiy' value="0" class="" id='no' <?php if($catrow[4] == 0){ echo "checked";} ?>>
+                <input type="radio" name='visiblitiy' value="0" class="" id='no' <?php if($catrow[5] == 0){ echo "checked";} ?>>
               </div>
             </div>
           </div>
@@ -195,11 +229,11 @@
             <div class="col-12 col-md-9">
               <div class="checky d-inline d-md-block">
                 <label for="yes">Yes</label>
-                <input type="radio" name='comments' value="1" class="" id='yes' <?php if($catrow[5] == 1){ echo "checked";} ?>>
+                <input type="radio" name='comments' value="1" class="" id='yes' <?php if($catrow[6] == 1){ echo "checked";} ?>>
               </div>
               <div class="checky d-inline">
                 <label for="no">No</label>
-                <input type="radio" name='comments' value="0" class="" id='no' <?php if($catrow[5] == 0){ echo "checked";} ?>>
+                <input type="radio" name='comments' value="0" class="" id='no' <?php if($catrow[6] == 0){ echo "checked";} ?>>
               </div>
             </div>
           </div>
@@ -208,11 +242,11 @@
             <div class="col-12 col-md-9">
               <div class="checky d-inline d-md-block">
                 <label for="yes">Yes</label>
-                <input type="radio" name='ads' value="1" class="" id='yes' <?php if($catrow[6] == 1){ echo "checked";} ?>>
+                <input type="radio" name='ads' value="1" class="" id='yes' <?php if($catrow[7] == 1){ echo "checked";} ?>>
               </div>
               <div class="checky d-inline">
                 <label for="no">No</label>
-                <input type="radio" name='ads' value="0" class="" id='no' <?php if($catrow[6] == 0){ echo "checked";} ?>>
+                <input type="radio" name='ads' value="0" class="" id='no' <?php if($catrow[7] == 0){ echo "checked";} ?>>
               </div>
             </div>
           </div>
@@ -239,6 +273,7 @@
         $cathiddenname = $_REQUEST['hiddenname'];
         $catname = $_POST['name'];
         $describe = $_POST['descrioption'];
+        $parent = $_POST['parent'];
         $order = $_POST['ordering'];
         $visiblity = $_POST['visiblitiy'];
         $allow_comments = $_POST['comments'];
@@ -247,10 +282,11 @@
         if (!empty($catname)){
           $checku = checkuser('cname','categories', $catname);
           if ($checku == false || $catname == $cathiddenname) {
-            $stmt = $con->prepare("UPDATE categories SET cname = :name, description = :des, ordering = :order, visibility = :visible, `allow-comments` = :comment, `allow-ads` = :ads WHERE cID = $cid");
+            $stmt = $con->prepare("UPDATE categories SET cname = :name, description = :des, parent = :parent, ordering = :order, visibility = :visible, `allow-comments` = :comment, `allow-ads` = :ads WHERE cID = $cid");
             $stmt->execute([
               'name' => $catname,
               'des' => $describe,
+              'parent' => $parent,
               'order' => $order,
               'visible' => $visiblity,
               'comment' => $allow_comments,

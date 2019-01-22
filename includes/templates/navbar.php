@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 <?php
-          foreach (getgitems('categories', 'WHERE visibility = 1', 'cid') as $cate) {
+          foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
             echo "<li class='nav-item'>";
             echo "<a class='nav-link' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>" . $cate[1] . "</a>";
             echo "</li>";
@@ -26,8 +26,12 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="profile.php">Profile</a>
+              <?php if (checkuserstatus($_SESSION['norid']) == true): ?>
                 <a class="dropdown-item" href="new_item.php">Add new item</a>
-                <a class="dropdown-item" href="#">Settings</a>
+              <?php else: ?>
+                <a class="dropdown-item disabled" style="cursor: not-allowed" href="#">Add new item</a>
+              <?php endif; ?>
+                <a class="dropdown-item" href="settings.php">Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php">Logout</a>
               </div>

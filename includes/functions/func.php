@@ -13,7 +13,7 @@
   }
 
   function gohome($errorma, $seconds = 2){
-    echo "<div class='container'>";
+    echo "<div class='container mt-5'>";
     echo "<div class='alert alert-danger text-center l-capital'>" . $errorma . "</div>";
     echo "<div class='alert alert-info text-center'>You Will Redirect To The Dashboard After " . $seconds . "s</div>";
     header("refresh:$seconds;url=index.php");
@@ -66,5 +66,28 @@ function checkuserstatus($userid=''){
     return true;
   }else {
     return false;
+  }
+}
+
+
+// the opened function
+function opened_func($thequery){
+  global $con;
+  $statement = $con->prepare("$thequery");
+  $statement->execute();
+  return $statement->fetchAll();
+}
+
+
+// display imgs function
+function getimg($thequery, $file = 'profile-imgs'){
+  if (empty( opened_func($thequery)[0][0] )){
+    return "data/default.png";
+  }else {
+    if (file_exists("data/$file/" . opened_func($thequery)[0][0])) {
+      return "data/$file/" . opened_func($thequery)[0][0];
+    }else {
+      return "data/default.png";
+    }
   }
 }

@@ -44,3 +44,12 @@ function lastrec($col, $table, $by){
   $statement->execute();
   return $recrow = $statement->fetchAll();
 }
+
+
+// the opened function
+function opened_func($thequery){
+  global $con;
+  $statement = $con->prepare("$thequery");
+  $statement->execute();
+  return $statement->fetchAll();
+}

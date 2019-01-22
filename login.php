@@ -114,7 +114,7 @@
         $formerrors[] = "<div class='alert alert-danger l-capital'>There aren't any fields to validate</div>";
       }
 
-      // Display the errors
+      // insert into the database
       if (empty($formerrors)){
         if (checkuser('username', 'users', $newusername) == false) {
           $stmt = $con->prepare("INSERT INTO users(username, password, email, fullname, `date`) VALUES(:nuser, :npass, :nemail, :nfullname, now())");
@@ -126,7 +126,7 @@
           ]);
 
           //success message
-          $sumass = "<div class='alert alert-success l-capital'>Thank you for signing up to our site you can now login :).</div>";
+          $sumass = "<div class='alert alert-success l-capital mt-3'>Thank you for signing up to our site you can now login :).</div>";
         }else {
           $act = 'signup-form';
           $formerrors[] = "<div class='alert alert-danger l-capital'>The username you entered is <strong>already exists</strong></div>";
@@ -165,7 +165,7 @@
           </div>
           <input type="submit" class="form-control col-12 col-sm-12 col-lg-6 m-auto d-block" name='login' value="Login" style="cursor: pointer;">
           <?php if (isset($rowcount) && $rowcount <= 0) {
-                  echo "<div class='alert alert-danger text-center l-capital mt-3'>*invalid Username or password</div>";
+                  echo "<div class='alert alert-danger text-center l-capital mt-3'><strong>* invalid</strong> Username or password</div>";
                 }
                 if (isset($sumass)) {
                   echo $sumass;

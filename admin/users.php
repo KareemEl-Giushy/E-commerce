@@ -173,8 +173,8 @@
           $errors[] = "<div class='alert alert-danger'>Full Name Can't Be<strong> Empty</strong></div>";
         }
         if (empty($errors)) {
-          /*There is a logical error here you can't change the username for any user to the selected session because of the if statment (solved by recognise by id not by the user name)*/
-          if (checkuser('username', 'users', $username) == false || $id == $_SESSION['id']){
+          /*There is a logical error here you can't change the username To the already username that exists EX:-(dina) can't stay (dina) when you send to the database (solved) by comparing the username in the form with the username in the database selected by the userid in the form (successded) :)*/
+          if (checkuser('username', 'users', $username) == false || $username == opened_func("SELECT username FROM users WHERE userid = $id LIMIT 1")[0][0]){
             $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, Fullname = ? WHERE UserID = ?");
             $stmt->execute([$username, $email, $fname, $id]);
             $stmt->rowCount();
@@ -186,7 +186,7 @@
             header("location: users.php?act=edit&userid=$id");
           }else {
             echo "<div class='container'>";
-            echo "<div class='alert alert-danger text-center l-capital'>The Username You Entered is Already Exists</div>";
+            echo "<div class='alert alert-danger text-center l-capital'>The Username You Entered is Already <strong>Exists</strong></div>";
             echo "<a class='btn btn-success text-center' href='?act=edit&userid=$id'>Go Back</a>";
             echo "</div>";
           }
