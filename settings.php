@@ -53,6 +53,7 @@
 
     // insert into database
     if (empty($errors)) {
+      $_SESSION['fnorname'] = $fullname;
       $stmt = $con->prepare("UPDATE users SET fullname = :fullname, email = :email WHERE userid = :id");
       $stmt->execute([
         'fullname' => $fullname,
