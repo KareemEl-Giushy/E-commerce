@@ -116,3 +116,60 @@ input[type="password"] ~ .negma{
   background-color: var(--primary);
   color: #FFF;
 }
+.item-title-pro{
+  line-height: 2em;
+  height: 3.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+/* Membership page */
+.stage{
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10%;
+}
+.stage .price span{
+  font-size: 30px;
+}
+.stage .list-group li{
+  border-top-right-radius: 20px;
+  margin-top: 10px;
+}
+.stage .list-group li:hover{
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--primary);
+}
+.stage .list-group.s li:hover{
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--secondary);
+}
+.stage .list-group.g li:hover{
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--yellow);
+}
+.stage > div.l-capital > span{
+  padding: 10px;
+  margin-top: 10px;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+}
+.stage > div > button{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: #DDD;
+  border: none;
+  outline: 0;
+  padding: 10px;
+  cursor: pointer;
+
+}
+.stage div button.gold{
+  background-color: var(--yellow);
+}

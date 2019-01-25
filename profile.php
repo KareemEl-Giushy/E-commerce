@@ -36,7 +36,7 @@
             <li class="list-group-item"><a class="d-block" href="#"><i class="fa fa-shopping-cart"></i> My Orders</a></li>
             <li class="list-group-item <?php if(checkuserstatus($_SESSION['norid']) == false){echo "disabled";} ?>"><a class="d-block" <?php if(checkuserstatus($_SESSION['norid']) == true){echo "href='my_products.php'";} ?> ><i class="fa fa-tags"></i> My Products</a></li>
             <li class="list-group-item"><a class="d-block" href="settings.php"><i class="fa fa-cog"></i> Account Settings</a></li>
-            <li class="list-group-item"><a class="d-block" href="#"><i class="fa fa-user"></i> Memberships</a></li>
+            <li class="list-group-item"><a class="d-block" href="membership.php"><i class="fa fa-user"></i> Memberships</a></li>
           </ul>
         </div>
       </div>
@@ -52,14 +52,39 @@
         </div>
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-1">
-            <div class="card">
-              <div class="card-header">
-                <h6 class="card-text"><i class="fa fa-shopping-cart"></i> My Last Orders</h6>
+            <div class="col-12 p-0">
+              <div class="card">
+                <div class="card-header">
+                  <h6 class="card-text"><i class="fa fa-shopping-cart"></i> My Last Orders</h6>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item l-capital">Not Yet</li>
+                  </ul>
+                </div>
               </div>
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item l-capital">Not Yet</li>
-                </ul>
+            </div>
+            <div class="col-12 mt-2 p-0">
+              <div class="card">
+                <div class="card-header">
+                  <h6 class="card-text"><i class="fa fa-comments"></i> Your Last 5 Comments</h6>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush <?php if( !empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC')) ){echo "menu";} ?>">
+  <?php
+                    if (!empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC'))){
+                      foreach (getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC') as $comment) {
+                        if ($comment['status'] == 1) {
+                          echo "<a href='item.php?itemid=" . $comment[4] . "' style='text-decoration: none;'><li class='list-group-item'>- " . $comment[1] . "</li></a>";
+                        }else {
+                          echo "<li class='list-group-item'><a href='item.php?itemid=" . $comment[4] . "' style='text-decoration: none;'>- " . $comment[1] . " </a><span>(Not Approved Yet).</span></li>";
+                        }
+                      }
+                    }else {
+                      echo "<li class='list-group-item l-capital'>- you don't have any comments yet.</li>";
+                    } ?>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -74,7 +99,11 @@
   <?php
                     if (!empty( getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') )) {
                       foreach (getgitems('items', "WHERE member_id = " . $_SESSION['norid'], 'itemid', 'DESC') as $product) {
-                        echo "<li class='list-group-item'><a href='item.php?itemid=$product[0]'>- " . $product[1] . "</a></li>";
+                        if ($product['approve'] == 1) {
+                          echo "<li class='list-group-item item-title-pro'><a href='item.php?itemid=$product[0]'>- " . $product[1] . "</a></li>";
+                        }else {
+                          echo "<li class='list-group-item item-title-pro'><a href='item.php?itemid=$product[0]'>- " . $product[1] . " </a><span>(Not Approved Yet).</span></li>";
+                        }
                       }
                     }else {
                       echo "<li class='list-group-item l-capital'>- You Don't Have any products. <a href='new_item.php' target='_blank'><i class='fa fa-plus fa-xs'></i> add an item</a></li>";
@@ -84,25 +113,6 @@
               </div>
             </div>
           <?php endif; ?>
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-1">
-            <div class="card">
-              <div class="card-header">
-                <h6 class="card-text"><i class="fa fa-comments"></i> Your Last 5 Comments</h6>
-              </div>
-              <div class="card-body">
-                <ul class="list-group list-group-flush <?php if( !empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC')) ){echo "menu";} ?>">
-<?php
-                  if (!empty(getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC'))){
-                    foreach (getgitems('comments', "WHERE user_id = " . $_SESSION['norid'], 'comment_id', 'DESC') as $comment) {
-                      echo "<a href='item.php?itemid=" . $comment[4] . "' style='text-decoration: none;'><li class='list-group-item'>- " . $comment[1] . "</li></a>";
-                    }
-                  }else {
-                    echo "<li class='list-group-item l-capital'>- you don't have any comments yet.</li>";
-                  } ?>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
