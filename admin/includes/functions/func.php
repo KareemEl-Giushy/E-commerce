@@ -53,3 +53,17 @@ function opened_func($thequery){
   $statement->execute();
   return $statement->fetchAll();
 }
+
+
+// display imgs function
+function getimg($thequery, $file = 'profile-imgs'){
+  if (empty( opened_func($thequery)[0][0] )){
+    return "../data/default.png";
+  }else {
+    if (file_exists("../data/$file/" . opened_func($thequery)[0][0])) {
+      return "../data/$file/" . opened_func($thequery)[0][0];
+    }else {
+      return "../data/default.png";
+    }
+  }
+}

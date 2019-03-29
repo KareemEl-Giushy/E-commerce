@@ -102,6 +102,9 @@
               <input type="text" name="fname" class="form-control col-md-12 col-12 col-sm-12 col-lg-10" value="<?php echo $userinfo[4]; ?>" required>
             </div>
             <input type="submit" value="Send" class="btn btn-primary float-sm-none float-lg-right mt-2 col-md-3 col-12 col-sm-12">
+            <div class="user-photo col-12 col-sm-12 col-md-12 col-lg-7 p-5">
+              <img src="<?php echo getimg("SELECT `profile-img` FROM users WHERE userid = " . $userinfo[0]); ?>" class='w-100 img-thumbnail rounded' alt="<?php echo $userinfo[1]; ?>" title="<?php echo $userinfo[1]; ?>">
+            </div>
           </form>
         </div>
 <?php
