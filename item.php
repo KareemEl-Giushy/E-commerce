@@ -64,7 +64,10 @@
             } ?></li>
           <?php endif; ?>
         </ul>
-        <button type="button" class="btn btn-primary mt-3 col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;">Add To My Chart</button>
+        <form class="" action="add_cart.php?itemid=<?php echo $itemid;?>" method="post">
+          <input type="hidden" name="itemidcart" value="<?php echo $itemid; ?>">
+          <input type="submit" class="btn btn-primary mt-3 col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;" value="Add To My Cart">
+        </form>
       </div>
     </div>
   </div>
