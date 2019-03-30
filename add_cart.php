@@ -19,9 +19,30 @@
   }
 
   if ( isset($_SESSION['norid']) && !empty($_SESSION['norid']) ){
-    $_SESSION['cart'][0] = ['hamada','soliman'];
+    $iteminfo = getgitems('items', "WHERE itemid = $itemid AND approve = 1", 'itemid')[0];
+    // echo '<pre>';
+    // print_r($iteminfo);
+    // echo '</pre>';
+
+    // adding the item into the Cart
+
+    // preparing for adding a new item
+    $_SESSION['cart'] = [];
+    $countCart = count($_SESSION['cart']);
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // print_r($iteminfo);
+    // echo "</pre>";
+    $arr = [1,2,3,4,5];
+    for ($i=0; $i < 5 ; $i++) {
+      $arr2 = [6,7,8,9];
+      $arr[] = $arr2;
+    }
+    // adding the item
+    $_SESSION['cart'][] = $iteminfo;
     echo "<pre>";
     print_r($_SESSION);
+    echo "</pre>";
 
   }else {
     header('location: index.php');
