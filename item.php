@@ -64,7 +64,7 @@
             } ?></li>
           <?php endif; ?>
         </ul>
-        <form class="" action="add_cart.php?itemid=<?php echo $itemid;?>" method="post">
+        <form class="" action="" method="post">
           <input type="hidden" name="itemidcart" value="<?php echo $itemid; ?>">
           <input type="submit" class="btn btn-primary mt-3 col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;" value="Add To My Cart">
         </form>
