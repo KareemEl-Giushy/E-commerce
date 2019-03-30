@@ -124,7 +124,7 @@
 <?php
 
         //get the comments and the users
-        $stmt = $con->prepare("SELECT users.Username, comments.*, users.userid FROM comments INNER JOIN users ON comments.user_id = users.UserID WHERE comments.status = 1 AND comments.item_id = ? ORDER BY comments.comment_id DESC");
+        $stmt = $con->prepare("SELECT users.Username, comments.*, users.userid FROM comments INNER JOIN users ON comments.user_id = users.UserID WHERE comments.item_id = ? ORDER BY comments.comment_id DESC");
         $stmt->execute([$iteminfo[0]]);
         $item_comments = $stmt->fetchAll();
 
