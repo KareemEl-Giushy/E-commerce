@@ -24,17 +24,6 @@ kbd{
   height: 348px;
   object-fit: cover;
 }
-li.nav-item.dropdown , .signs{
-  position: absolute;
-  right: 50px;
-}
-li.nav-item .nav-link{
-  text-transform: capitalize;
-}
-.dropdown-menu, .signs{
-  left: unset;
-  right: 0;
-}
 .form-row{
   position: relative;
 }
@@ -77,6 +66,31 @@ input[type="password"] ~ .negma{
   right: 55px;
   font-size: 20px;
   color: #e74c3c;
+}
+/* Start the navbar */
+.signin-btn a {
+  background-color: var(--primary);
+  padding: 10px;
+  color: #FFF;
+  display: block;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.signin-btn a:hover {
+ background-color: #006fcc;
+}
+.downdroping {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
 }
 /* Start Styleing Items */
 .item-title{
