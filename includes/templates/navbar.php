@@ -6,10 +6,25 @@
 <div class="navey bg-light">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="menu-icon">
-        <div class="slach"></div>
-        <div class="slach"></div>
-        <div class="slach"></div>
+      <div class="cates-card">
+        <div class="menu-icon">
+          <div class="slach"></div>
+          <div class="slach"></div>
+          <div class="slach"></div>
+        </div>
+        <div class="castes-card-body">
+          <div class="up-arrow"></div>
+          <ul class="list-group list-group-flush">
+
+<?php
+            foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
+              echo "<li class='list-group-item'>";
+                echo "<i class='{$cate['icon']} p-2'></i>";
+                echo "<a class='' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>" . $cate[1] . "</a>";
+              echo "</li>";
+            } ?>
+          </ul>
+        </div>
       </div>
       <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0" href="index.php">
         eCommerce Site
@@ -25,19 +40,13 @@
         </form>
         <ul class="navbar-nav mr-auto">
           <div class="row">
-
-<?php
-            /*foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
-              echo "<li class='nav-item'>";
-              echo "<a class='nav-link' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>" . $cate[1] . "</a>";
-              echo "</li>";
-            } */?>
             <?php if (isset($_SESSION['fnorname']) && isset($_SESSION['norid'])): ?>
-              <li class="nav-item dropdown pl-0">
-                <a class="nav-link dropdown-toggle l-capital" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <?php echo $_SESSION['fnorname']; ?>
+              <li class="nav-item dropdown px-4 col-6 col-lg-9 px-lg-0">
+                <a class="nav-link dropdown-toggle px-1 l-capital" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                  <?php echo explode(' ',$_SESSION['fnorname'])[0]; ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div class="up-arrow"></div>
                   <a class="dropdown-item" href="profile.php">Profile</a>
                 <?php if (checkuserstatus($_SESSION['norid']) == true): ?>
                   <a class="dropdown-item" href="new_item.php">Add new item</a>
@@ -68,7 +77,7 @@
               <li class="nav-item dropdown pl-0 col-6 col-lg-3">
                 <div class="cart col pl-0">
                 <a class="nav-link float-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class='fa fa-shopping-cart fa-2x p-1 text-primary'></i>
+                  <i class='fa fa-shopping-cart fa-2x p-1'></i>
                 </a>
                 <div class="clearfix"></div>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

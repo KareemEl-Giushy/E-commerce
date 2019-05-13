@@ -95,7 +95,7 @@ input[type="password"] ~ .negma{
   margin-bottom: 0;
 }
 .clicked {
-  top: -1px;
+  top: -8px;
 }
 .clicked .slach:nth-child(2) {
   opacity: 0;
@@ -111,6 +111,11 @@ input[type="password"] ~ .negma{
   transform: rotate(-45deg);
 }
 /* End the menu btn */
+/* Start the actual menu */
+.castes-card-body {
+  position: absolute;
+  z-index: 1;
+}
 /* the arrow */
 .up-arrow {
   width: 100%;
@@ -175,6 +180,12 @@ li.nav-item.dropdown {
 }
 .cart .dropdown-menu {
   left: -100px;
+}
+.cart a i {
+ color: #218cff;
+}
+.cart a i:hover {
+  color: var(--primary);
 }
 /* navbar responsive */
 @media (min-width: 0) and (max-width: 768px) {
