@@ -116,7 +116,7 @@ input[type="password"] ~ .negma{
   position: absolute;
   border-radius: 5px;
   z-index: 1;
-  transition: opacity 1.1s ease-in-out;
+  transition: opacity 1.5s ease-in-out;
 }
 .cates-card-body .up-arrow {
   left: 65px !important;

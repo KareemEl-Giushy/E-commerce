@@ -14,16 +14,16 @@
         </div>
         <div class="cates-card-body" style="display: none;">
           <div class="up-arrow"></div>
-          <ul class="list-group list-group-flush">
+          <div class="list-group list-group-flush">
 
 <?php
             foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
-              echo "<li class='list-group-item'>";
+              echo "<a class='list-group-item' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>";
                 echo "<i class='{$cate['icon']} p-2'></i>";
-                echo "<a class='' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>" . $cate[1] . "</a>";
-              echo "</li>";
+                echo $cate[1];
+              echo "</a>";
             } ?>
-          </ul>
+          </div>
         </div>
       </div>
       <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0" href="index.php">
