@@ -79,4 +79,11 @@ $(function (){
       $('.card .card-header h5.card-text').text('Numbers Only');
     }
   });
+
+
+  // the menu button
+  $('.menu-icon').click(function (){
+    $(this).toggleClass("clicked")
+    //$(".menu-icon")
+  });
 });
