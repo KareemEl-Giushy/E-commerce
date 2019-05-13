@@ -85,5 +85,14 @@ $(function (){
   $('.menu-icon').click(function (){
     $(this).toggleClass("clicked")
     //$(".menu-icon")
+    //------------------------------
+    // the actual menu
+    if (document.querySelector('.menu-icon').getAttribute('class').split(' ')[1] != 'clicked') {
+      $('.cates-card-body').css('opacity', 0);
+      $('.cates-card-body').css('display', 'none');
+    }else {
+      $('.cates-card-body').css('opacity', 1);
+      $('.cates-card-body').css('display', 'inline-block');
+    }
   });
 });

@@ -12,7 +12,7 @@
           <div class="slach"></div>
           <div class="slach"></div>
         </div>
-        <div class="castes-card-body">
+        <div class="cates-card-body" style="display: none;">
           <div class="up-arrow"></div>
           <ul class="list-group list-group-flush">
 
