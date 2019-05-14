@@ -69,6 +69,19 @@ input[type="password"] ~ .negma{
 }
 /* End Global */
 /*****************************************************/
+/* upper-bar */
+.upper-bar a {
+  font-size: 14px;
+  text-decoration: none;
+}
+.upper-bar .part-2 a {
+  border-left: 1px solid #00F;
+  padding: 4px;
+}
+.upper-bar .part-2 a:first-child {
+  border-left: none;
+}
+/* end the upper-bar */
 /* Start the navbar */
 /* the menu btn */
 .menu-icon {
@@ -198,7 +211,10 @@ li.nav-item.dropdown {
 }
 /* navbar responsive */
 @media (min-width: 0) and (max-width: 768px) {
-
+  .cates-card-body .up-arrow {
+    top: -26px !important;
+    left: 65px !important;
+  }
   .up-arrow {
     top: 30px;
     left: 60px;
@@ -209,6 +225,10 @@ li.nav-item.dropdown {
   }
 }
 @media (min-width: 768px) and (max-width: 992px){
+  .cates-card-body .up-arrow {
+    top: -26px !important;
+    left: 65px !important;
+  }
   .up-arrow {
     top: 30px;
     left: 60px;

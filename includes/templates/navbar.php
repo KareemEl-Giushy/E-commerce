@@ -4,6 +4,21 @@
   } ?>
 <!-- Start Navbar -->
 <div class="navey bg-light">
+  <div class="upper-bar bg-light px-5 text-center d-none d-lg-block">
+    <div class="row">
+      <div class="l-capital col pt-1">
+        <a class="pl-1" href="#"><i class="fa fa-money-bill"></i> wanna be a seller ? |</a>
+        <a class="pl-1" href="#"><i class="fa fa-sync"></i> Free returns ? |</a>
+        <a class="" href="#"><strong>$</strong> cash back</a>
+      </div>
+      <div class="l-capital col part-2 pt-1">
+        <a class="text-dark" href="#">daily deals</a>
+        <a class="text-dark" href="#">Customer Service</a>
+        <a class="text-dark" href="#">track orders</a>
+        <a class="text-dark" href="#">En</a>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="cates-card">
