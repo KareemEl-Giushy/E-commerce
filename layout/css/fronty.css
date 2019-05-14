@@ -6,6 +6,9 @@ body, html{
   margin: 0;
   padding: 0;
 }
+:root {
+  --noo-yellow: #fff200;
+}
 kbd{
   display: inline-block;
 }
@@ -70,12 +73,17 @@ input[type="password"] ~ .negma{
 /* End Global */
 /*****************************************************/
 /* upper-bar */
+.upper-bar {
+
+}
 .upper-bar a {
   font-size: 14px;
   text-decoration: none;
+  color: #a8b2ba;
 }
 .upper-bar .part-2 a {
-  border-left: 1px solid #00F;
+  border-left: 1px solid #FFF;
+  border-radius: 3px;
   padding: 4px;
 }
 .upper-bar .part-2 a:first-child {
@@ -83,6 +91,16 @@ input[type="password"] ~ .negma{
 }
 /* end the upper-bar */
 /* Start the navbar */
+.navey {
+  /* overflow: hidden; */
+  position: sticky;
+  top:0;
+  z-index: 1;
+  background-color: var(--noo-yellow);
+}
+.navey a.navbar-brand {
+  font-family: 'Shadows Into Light', cursive;
+}
 /* the menu btn */
 .menu-icon {
   position: relative;
@@ -98,7 +116,7 @@ input[type="password"] ~ .negma{
 .slach {
   width: 60px;
   height: 6px;
-  background: var(--primary);
+  background: var(--secondary);
   border-radius: 10px;
   display: block;
   margin: 15px 0;
@@ -171,7 +189,7 @@ input[type="password"] ~ .negma{
   position: absolute;
 }
 .signin-btn a {
-  background-color: var(--primary);
+  background-color: var(--noo-yellow);
   padding: 10px;
   color: #FFF;
   display: block;
@@ -180,7 +198,7 @@ input[type="password"] ~ .negma{
   border-radius: 5px;
 }
 .signin-btn a:hover {
- background-color: #006fcc;
+ background-color: #f8eb00;
 }
 .downdroping {
   display: block;
@@ -198,16 +216,16 @@ li.nav-item.dropdown {
   padding: 0.375rem 0.75rem
 }
 .cart a.dropdown-toggle::after {
-  color: var(--primary);
+  color: var(--noo-yellow);
 }
 .cart .dropdown-menu {
   left: -100px;
 }
 .cart a i {
- color: #218cff;
+ color: var(--secondary);
 }
 .cart a i:hover {
-  color: var(--primary);
+  color: #f8eb00;
 }
 /* navbar responsive */
 @media (min-width: 0) and (max-width: 768px) {

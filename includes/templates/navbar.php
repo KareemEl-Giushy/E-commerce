@@ -3,23 +3,23 @@
     session_start();
   } ?>
 <!-- Start Navbar -->
-<div class="navey bg-light">
-  <div class="upper-bar bg-light px-5 text-center d-none d-lg-block">
-    <div class="row">
-      <div class="l-capital col pt-1">
-        <a class="pl-1" href="#"><i class="fa fa-money-bill"></i> wanna be a seller ? |</a>
-        <a class="pl-1" href="#"><i class="fa fa-sync"></i> Free returns ? |</a>
-        <a class="" href="#"><strong>$</strong> cash back</a>
-      </div>
-      <div class="l-capital col part-2 pt-1">
-        <a class="text-dark" href="#">daily deals</a>
-        <a class="text-dark" href="#">Customer Service</a>
-        <a class="text-dark" href="#">track orders</a>
-        <a class="text-dark" href="#">En</a>
-      </div>
+<div class="upper-bar px-5 text-center d-none d-lg-block bg-light">
+  <div class="row">
+    <div class="l-capital col pt-1">
+      <a class="pl-1" href="#"><i class="fa fa-money-bill"></i> wanna be a seller ? |</a>
+      <a class="pl-1" href="#"><i class="fa fa-sync"></i> Free returns ? |</a>
+      <a class="" href="#"><strong>$</strong> cash back</a>
+    </div>
+    <div class="l-capital col part-2 pt-1">
+      <a class="" href="#">daily deals</a>
+      <a class="" href="#">Customer Service</a>
+      <a class="" href="#">track orders</a>
+      <a class="" href="#">En</a>
     </div>
   </div>
-  <div class="container">
+</div>
+<div class="navey">
+  <div class="">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="cates-card">
         <div class="menu-icon">
@@ -33,7 +33,7 @@
 
 <?php
             foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
-              echo "<a class='list-group-item' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>";
+              echo "<a class='list-group-item text-dark' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>";
                 echo "<i class='{$cate['icon']} p-2'></i>";
                 echo $cate[1];
               echo "</a>";
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0" href="index.php">
+      <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0 font-weight-bold text-secondary" href="index.php">
         eCommerce Site
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 col col-lg-9 pl-0">
           <input class="form-control mr-sm-2 col-lg-10 col-md-9 col-sm-9 col-12" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0 col col-lg-1" type="submit"><i class='fa fa-search'></i></button>
+          <button class="btn btn-outline-secondary my-2 my-sm-0 col col-lg-1" type="submit"><i class='fa fa-search'></i></button>
         </form>
         <ul class="navbar-nav mr-auto">
           <div class="row">
@@ -82,7 +82,7 @@
                   <div class="up-arrow"></div>
                   <div class="downdroping" href="#">New Customer ?</div>
                   <div class="signin-btn text-center m-3">
-                    <a href="login.php?act=signup-form" class="">Sign Up</a>
+                    <a href="login.php?act=signup-form" class="text-dark">Sign Up</a>
                   </div>
                   <div class="dropdown-divider"></div>
                   <div class="downdroping text-center" href="#">Already Here <a href="login.php">login</a></div>
