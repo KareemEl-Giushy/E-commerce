@@ -204,6 +204,10 @@ input[type="password"] ~ .negma{
 }
 /* End the up-arrow */
 /* start the searching form */
+div.navey nav form input.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 89, 18, 0.25);
+  border-color: #fbbca1;
+}
 div.navey nav form .btn-outline-secondary {
   color: var(--main-color);
   background-color: transparent;
