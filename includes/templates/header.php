@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="layout/css/fronty.css">
     <!-- End Links -->
     <!-- Start Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <!-- End Fonts -->
   </head>
-  <body>
+  <body class="bg-light">

@@ -3,22 +3,21 @@
     session_start();
   } ?>
 <!-- Start Navbar -->
-<div class="upper-bar px-5 text-center d-none d-lg-block bg-light">
+<div class="upper-bar px-5 d-none d-lg-block bg-white p-3">
   <div class="row">
     <div class="l-capital col pt-1">
-      <a class="pl-1" href="#"><i class="fa fa-money-bill"></i> wanna be a seller ? |</a>
-      <a class="pl-1" href="#"><i class="fa fa-sync"></i> Free returns ? |</a>
-      <a class="" href="#"><strong>$</strong> cash back</a>
+      <span class="pl-1" href="#"><i class="fa fa-envelope text-main-color"></i> kemoo.64123@gmail.com</span>
+      <span class="pl-1" href="#"><i class="fa fa-phone text-main-color"></i> (+20) 01144379723</span>
     </div>
-    <div class="l-capital col part-2 pt-1">
-      <a class="" href="#">daily deals</a>
-      <a class="" href="#">Customer Service</a>
-      <a class="" href="#">track orders</a>
-      <a class="" href="#">En</a>
+    <div class="l-capital col part-2 pt-1 float-right">
+      <a class="" href="#"><i class='fa fa-facebook'></i></a>
+      <a class="" href="#"><i class='fa fa-twitter'></i></a>
+      <a class="" href="#"><i class='fa fa-google-plus-g'></i></a>
+      <a class="" href="#"><i class='fa fa-instagram'></i></a>
     </div>
   </div>
 </div>
-<div class="navey">
+<div class="navey bg-white">
   <div class="">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="cates-card">
@@ -33,16 +32,16 @@
 
 <?php
             foreach (getgitems('categories', 'WHERE visibility = 1 AND parent = 0', 'cid') as $cate) {
-              echo "<a class='list-group-item text-dark' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>";
-                echo "<i class='{$cate['icon']} p-2'></i>";
+              echo "<a class='list-group-item text-main-black' href='category.php?pageid=" . $cate[0] . "&pagename=" . str_replace(" ", "-",$cate[1]) . "'>";
+                echo "<i class='{$cate['icon']} p-2 text-main-color'></i>";
                 echo $cate[1];
               echo "</a>";
             } ?>
           </div>
         </div>
       </div>
-      <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0 font-weight-bold text-secondary" href="index.php">
-        eCommerce Site
+      <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0 font-weight-bold text-secondary text-center" href="index.php">
+        <img src="data/uploads/logo.png" alt="eCommerce">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -75,17 +74,17 @@
               </li>
             <?php else: ?>
               <li class="nav-item dropdown px-4 col-6 col-lg-9 px-lg-0">
-                <a class="nav-link dropdown-toggle px-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                <a class="nav-link dropdown-toggle px-1 text-main-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
                   Your Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <div class="up-arrow"></div>
                   <div class="downdroping" href="#">New Customer ?</div>
                   <div class="signin-btn text-center m-3">
-                    <a href="login.php?act=signup-form" class="text-dark">Sign Up</a>
+                    <a href="login.php?act=signup-form" class="text-white">Sign Up</a>
                   </div>
                   <div class="dropdown-divider"></div>
-                  <div class="downdroping text-center" href="#">Already Here <a href="login.php">login</a></div>
+                  <div class="downdroping text-center" href="#">Already Here <a href="login.php" class="text-main-color d-block d-sm-inline-block">login</a></div>
                 </div>
               </li>
             <?php endif; ?>
@@ -93,6 +92,7 @@
                 <div class="cart col pl-0">
                 <a class="nav-link float-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class='fa fa-shopping-cart fa-2x p-1'></i>
+                  <span class="text-center"><?php echo 0; ?></span>
                 </a>
                 <div class="clearfix"></div>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

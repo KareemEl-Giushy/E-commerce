@@ -7,7 +7,8 @@ body, html{
   padding: 0;
 }
 :root {
-  --noo-yellow: #fff200;
+  --main-color: #ff5912;
+  --main-black: #34404b;
 }
 kbd{
   display: inline-block;
@@ -70,11 +71,23 @@ input[type="password"] ~ .negma{
   font-size: 20px;
   color: #e74c3c;
 }
+.bg-main-color {
+  background-color: var(--main-color);
+}
+.text-main-color {
+  color: var(--main-color);
+}
+.bg-main-black {
+  background-color: var(--main-black);
+}
+.text-main-black {
+  color: var(--main-black);
+}
 /* End Global */
 /*****************************************************/
 /* upper-bar */
 .upper-bar {
-
+  border-bottom: 5px solid var(--light);
 }
 .upper-bar a {
   font-size: 14px;
@@ -82,9 +95,10 @@ input[type="password"] ~ .negma{
   color: #a8b2ba;
 }
 .upper-bar .part-2 a {
-  border-left: 1px solid #FFF;
+  /* border-left: 1px solid #FFF; */
   border-radius: 3px;
   padding: 4px;
+  float: right;
 }
 .upper-bar .part-2 a:first-child {
   border-left: none;
@@ -96,10 +110,6 @@ input[type="password"] ~ .negma{
   position: sticky;
   top:0;
   z-index: 1;
-  background-color: var(--noo-yellow);
-}
-.navey a.navbar-brand {
-  font-family: 'Shadows Into Light', cursive;
 }
 /* the menu btn */
 .menu-icon {
@@ -108,15 +118,15 @@ input[type="password"] ~ .negma{
   display: block;
   width: 70px;
   height: 35px;
-  top: -8px;
-  left: 10px;
+  top: -12px;
+  left: 19px;
   cursor: pointer;
   transform: scale(0.5)
 }
 .slach {
   width: 60px;
   height: 6px;
-  background: var(--secondary);
+  background: var(--main-color);
   border-radius: 10px;
   display: block;
   margin: 15px 0;
@@ -126,7 +136,7 @@ input[type="password"] ~ .negma{
   margin-bottom: 0;
 }
 .clicked {
-  top: -8px;
+  top: -12px;
 }
 .clicked .slach:nth-child(2) {
   opacity: 0;
@@ -156,13 +166,17 @@ input[type="password"] ~ .negma{
   border-radius: 9px;
   box-shadow: -10px 2px 5px #b6b6b6;
 }
+.list-group-flush .list-group-item:hover {
+  color: #000;
+}
 /* the arrow */
 .up-arrow {
-  width: 100%;
+  width: 20%;
   height: 28px;
   position: absolute;
   overflow: hidden;
-  left: 15px;
+  /* left: 15px; */
+  left: 78px;
   top: -28px;
 }
 .up-arrow:last-of-type {
@@ -188,17 +202,31 @@ input[type="password"] ~ .negma{
   transform: rotate(45deg);
   position: absolute;
 }
-.signin-btn a {
-  background-color: var(--noo-yellow);
-  padding: 10px;
+/* End the up-arrow */
+/* start the searching form */
+div.navey nav form .btn-outline-secondary {
+  color: var(--main-color);
+  background-color: transparent;
+  border-color: var(--main-color);
+}
+div.navey nav form .btn-outline-secondary:hover {
   color: #FFF;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+/* end the searching form */
+/* start the account button */
+.signin-btn a {
+  background-color: var(--main-color);
+  padding: 10px;
   display: block;
   text-decoration: none;
   font-weight: 500;
   border-radius: 5px;
 }
 .signin-btn a:hover {
- background-color: #f8eb00;
+  background-color: #e24d0e;
+ background-color: #e24d0e;
 }
 .downdroping {
   display: block;
@@ -212,6 +240,9 @@ input[type="password"] ~ .negma{
   background-color: transparent;
   border: 0;
 }
+.downdroping a:hover {
+  color: #e24d0e;
+}
 li.nav-item.dropdown {
   padding: 0.375rem 0.75rem
 }
@@ -222,10 +253,24 @@ li.nav-item.dropdown {
   left: -100px;
 }
 .cart a i {
- color: var(--secondary);
+ color: var(--main-color);
 }
 .cart a i:hover {
-  color: #f8eb00;
+  color: #e24d0e;
+  color: #e24d0e
+}
+.cart a span {
+  width: 15px;
+  height: 15px;
+  background-color: #FFF;
+  color: var(--main-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 17px;
+  left: -8px;
+  line-height: 1.01023em;
+  display: inline-block;
+  font-weight: 500;
 }
 /* navbar responsive */
 @media (min-width: 0) and (max-width: 768px) {
@@ -241,6 +286,9 @@ li.nav-item.dropdown {
     top: 32px;
     left: 100px;
   }
+  .cart a span {
+    position: unset;
+  }
 }
 @media (min-width: 768px) and (max-width: 992px){
   .cates-card-body .up-arrow {
@@ -254,6 +302,9 @@ li.nav-item.dropdown {
   .up-arrow:last-of-type {
     top: 32px;
     left: 275px;
+  }
+  .cart a span {
+    position: unset;
   }
 }
 /* end navbar responsive */
