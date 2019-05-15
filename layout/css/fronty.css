@@ -408,3 +408,17 @@ li.nav-item.dropdown {
 .stage div button.gold{
   background-color: var(--yellow);
 }
+/*****************************************************/
+/* Starting footer */
+div.footer {
+  padding-top: 5rem;
+}
+div.footer footer ul:last-child {
+  list-style: none;
+  float: left;
+}
+div.footer footer ul:last-child li {
+  list-style: none;
+  float: left;
+}
+/* End Footer */
