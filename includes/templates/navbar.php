@@ -10,10 +10,10 @@
       <span class="pl-1" href="#"><i class="fa fa-phone text-main-color"></i> (+20) 01144379723</span>
     </div>
     <div class="l-capital col part-2 pt-1 float-right">
-      <a class="" href="#"><i class='fa fa-facebook'></i></a>
-      <a class="" href="#"><i class='fa fa-twitter'></i></a>
-      <a class="" href="#"><i class='fa fa-google-plus-g'></i></a>
-      <a class="" href="#"><i class='fa fa-instagram'></i></a>
+      <a class="pl-3" href="#"><i class='fab fa-facebook text-primary'></i></a>
+      <a class="pl-3" href="#"><i class='fab fa-twitter'></i></a>
+      <a class="pl-3" href="#"><i class='fab fa-pinterest'></i></a>
+      <a class="pl-3" href="#"><i class='fab fa-instagram text-danger'></i></a>
     </div>
   </div>
 </div>

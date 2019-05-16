@@ -90,7 +90,7 @@ input[type="password"] ~ .negma{
   border-bottom: 5px solid var(--light);
 }
 .upper-bar a {
-  font-size: 14px;
+  /* font-size: 14px; */
   text-decoration: none;
   color: #a8b2ba;
 }
@@ -100,8 +100,11 @@ input[type="password"] ~ .negma{
   padding: 4px;
   float: right;
 }
-.upper-bar .part-2 a:first-child {
-  border-left: none;
+.fa-twitter {
+  color: #38A1F3;
+}
+.fa-pinterest {
+  color: #c8232c;
 }
 /* end the upper-bar */
 /* Start the navbar */
@@ -412,13 +415,5 @@ li.nav-item.dropdown {
 /* Starting footer */
 div.footer {
   padding-top: 5rem;
-}
-div.footer footer ul:last-child {
-  list-style: none;
-  float: left;
-}
-div.footer footer ul:last-child li {
-  list-style: none;
-  float: left;
 }
 /* End Footer */
