@@ -1,14 +1,39 @@
+/* Fonts */
+@font-face {
+    font-family: 'har-sans-black';
+    src: url("../fonts/HarmoniaSansProCyr-Black.otf");
+}
+@font-face {
+    font-family: 'har-sans-bold';
+    src: url("../fonts/HarmoniaSansProCyr-Bold.otf");
+}
+@font-face {
+    font-family: 'har-sans-italic';
+    src: url("../fonts/HarmoniaSansProCyr-Italic.otf");
+}
+@font-face {
+    font-family: 'har-sans-light';
+    src: url("../fonts/HarmoniaSansProCyr-Light.otf");
+}
+@font-face {
+    font-family: 'har-sans-regular';
+    src: url("../fonts/HarmoniaSansProCyr-Regular.otf");
+}
+@font-face {
+    font-family: 'har-sans-semibd';
+    src: url("../fonts/HarmoniaSansProCyr-SemiBd.otf");
+}
 /* Global */
 *{
   box-sizing: border-box;
 }
-body, html{
-  margin: 0;
-  padding: 0;
-}
 :root {
   --main-color: #ff5912;
   --main-black: #34404b;
+}
+body, html{
+  margin: 0;
+  padding: 0;
 }
 kbd{
   display: inline-block;
@@ -71,6 +96,7 @@ input[type="password"] ~ .negma{
   font-size: 20px;
   color: #e74c3c;
 }
+/* color Classes */
 .bg-main-color {
   background-color: var(--main-color);
 }
@@ -82,6 +108,26 @@ input[type="password"] ~ .negma{
 }
 .text-main-black {
   color: var(--main-black);
+}
+/* end Color Classes */
+/* Font Classes */
+.font-har-black {
+  font-family: 'har-sans-black';
+}
+.font-har-bold {
+  font-family: 'har-sans-bold';
+}
+.font-har-italic {
+  font-family: 'har-sans-italic';
+}
+.font-har-light {
+  font-family: 'har-sans-light';
+}
+.font-har-regular {
+  font-family: 'har-sans-regular';
+}
+.font-har-semiBd {
+  font-family: 'har-sans-semibd';
 }
 /* End Global */
 /*****************************************************/
@@ -414,6 +460,14 @@ li.nav-item.dropdown {
 /*****************************************************/
 /* Starting footer */
 div.footer {
-  padding-top: 5rem;
+
+}
+div.footer footer ul li {
+  color: var(--main-black);
+  padding: 10px;
+  cursor: pointer;
+}
+div.footer footer ul li:hover {
+  color: var(--main-color);
 }
 /* End Footer */
