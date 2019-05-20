@@ -362,6 +362,24 @@ li.nav-item.dropdown {
 }
 /* end navbar responsive */
 /*********************************************************************/
+/* the slider */
+.slider-body {
+
+}
+.controlers .bullet {
+  width: 10px;
+  height: 10px;
+  background-color: var(--main-black);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+}
+.controlers .bullet.active {
+  background-color: #000;
+}
+/* End Slider */
+/*********************************************************************/
 /* Start Styleing Items */
 .item-title{
   line-height: 2em;

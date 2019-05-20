@@ -4,6 +4,28 @@
   include "connect.php";
   include "includes/templates/header.php";
   include "includes/templates/navbar.php"; ?>
+  <div class="container-fluid">
+    <div class="slider-body">
+      <div class="row">
+        <div class="text-main-black col-6 text-center">
+          <h2 class="p-5">iPhone X Max</h2>
+          <p class='px-5 pb-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div class="signin-btn text-center m-auto font-har-bold w-25">
+            <a href="#" class="text-white"> See More</a>
+          </div>
+        </div>
+        <div class="img col-6 text-center">
+          <img class="w-50 px-3 pt-5" src="data\item-imgs\Apple-iPhoneX-SpaceGray-1-3x.jpg" alt="iphonex">
+        </div>
+      </div>
+    </div>
+    <div class="controlers text-center">
+      <div class="bullet active"></div>
+      <div class="bullet"></div>
+      <div class="bullet"></div>
+      <div class="bullet"></div>
+    </div>
+  </div>
   <div class="container">
     <h1 class="text-center l-capital mb-5 mt-3">Home</h1>
     <div class="row">
