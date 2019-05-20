@@ -5,9 +5,9 @@
 <!-- Start Navbar -->
 <div class="upper-bar px-5 d-none d-lg-block bg-white p-3">
   <div class="row">
-    <div class="l-capital col pt-1">
-      <span class="pl-1" href="#"><i class="fa fa-envelope text-main-color"></i> kemoo.64123@gmail.com</span>
-      <span class="pl-1" href="#"><i class="fa fa-phone text-main-color"></i> (+20) 01144379723</span>
+    <div class="col pt-1">
+      <span class="pl-1 font-har-regular" href="#"><i class="fa fa-envelope text-main-color"></i> kemoo.64123@gmail.com</span>
+      <span class="pl-1 font-har-regular" href="#"><i class="fa fa-phone text-main-color"></i> (+20) 01144379723</span>
     </div>
     <div class="l-capital col part-2 pt-1 float-right">
       <a class="pl-3" href="#"><i class='fab fa-facebook text-primary'></i></a>
@@ -74,17 +74,17 @@
               </li>
             <?php else: ?>
               <li class="nav-item dropdown px-4 col-6 col-lg-9 px-lg-0">
-                <a class="nav-link dropdown-toggle px-1 text-main-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                <a class="nav-link dropdown-toggle px-1 text-main-black font-har-regular" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
                   Your Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <div class="up-arrow"></div>
-                  <div class="downdroping" href="#">New Customer ?</div>
-                  <div class="signin-btn text-center m-3">
+                  <div class="downdroping font-har-regular" href="#">New Customer ?</div>
+                  <div class="signin-btn text-center m-3 font-har-bold">
                     <a href="login.php?act=signup-form" class="text-white">Sign Up</a>
                   </div>
                   <div class="dropdown-divider"></div>
-                  <div class="downdroping text-center" href="#">Already Here <a href="login.php" class="text-main-color d-block d-sm-inline-block">login</a></div>
+                  <div class="downdroping text-center font-har-regular" href="#">Already Here <a href="login.php" class="text-main-color d-block d-sm-inline-block">login</a></div>
                 </div>
               </li>
             <?php endif; ?>

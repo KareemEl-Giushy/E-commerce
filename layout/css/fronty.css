@@ -126,7 +126,7 @@ input[type="password"] ~ .negma{
 .font-har-regular {
   font-family: 'har-sans-regular';
 }
-.font-har-semiBd {
+.font-har-semibd {
   font-family: 'har-sans-semibd';
 }
 /* End Global */
@@ -388,6 +388,8 @@ li.nav-item.dropdown {
 .login-btn:hover, .signup-btn:hover{
   background-color: #EEE;
 }
+/* login and sign up responsive */
+
 /* profile */
 .menu .list-group-item{
   cursor: pointer;
@@ -465,7 +467,16 @@ div.footer {
 div.footer footer ul li {
   color: var(--main-black);
   padding: 10px;
+  font-family: 'har-sans-regular';
   cursor: pointer;
+}
+div.footer footer ul li a {
+  color: var(--main-black);
+  font-family: 'har-sans-regular';
+  text-decoration: none;
+}
+div.footer footer ul li:hover a{
+  color: var(--main-color);
 }
 div.footer footer ul li:hover {
   color: var(--main-color);

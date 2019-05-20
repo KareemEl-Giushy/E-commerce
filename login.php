@@ -140,7 +140,7 @@
     }
   } ?>
 
-<div class="container">
+<div class="container login-signup" style="height: 625px;">
   <div class="m-auto col-12 col-sm-12 col-md-9 col-lg-9">
     <div class="row mt-4">
       <!-- the buttons -->
