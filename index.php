@@ -4,7 +4,7 @@
   include "connect.php";
   include "includes/templates/header.php";
   include "includes/templates/navbar.php"; ?>
-  <div class="container-fluid">
+  <div class="container-fluid bg-white">
     <div class="slider-body">
       <div class="row">
         <div class="text-main-black col-6 text-center">
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="controlers text-center">
+    <div class="controlers text-center mb-3">
       <div class="bullet active"></div>
       <div class="bullet"></div>
       <div class="bullet"></div>
@@ -27,29 +27,37 @@
     </div>
   </div>
   <div class="container">
-    <h1 class="text-center l-capital mb-5 mt-3">Home</h1>
-    <div class="row">
-<?php
-  if ( !empty( getgitems('items', "WHERE approve = 1", 'itemid', 'DESC') ) ){
-    foreach (getgitems('items', "WHERE approve = 1", 'itemid', 'DESC') as $item) {
-      echo "<div class='col col-sm-12 col-md-4 col-lg-4'>";
-        echo "<div class='card mb-3'>";
-          echo "<div class='card-header'>";
-            echo "<h5 class='card-text text-center'>$item[3]</h5>";
-          echo "</div>";
-          echo "<div class='card-text date-tag'>" . $item[4] . "</div>";
-          echo "<img class='card-img-top img-fluid item-img' src='" . getimg("SELECT `item-img` FROM items WHERE itemid = " . $item[0], 'item-imgs') . "' alt='$item[1]'/>";
-          echo "<div class='card-body'>";
-            echo "<h6 class='card-title item-title'>" . $item[1] . "</h6>";
-            echo "<p class='card-text item-desc'>" . $item[2] . "</p>";
-            echo "<div class='card-footer'>";
-            echo "<a class='btn btn-primary d-block' href='item.php?itemid=$item[0]'>View</a>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-      echo "</div>";
-    }
-  } ?>
+    <div class="section-1 mt-5 bg-light">
+      <h1 class="text-center text-uppercase mb-3 mt-3 font-har-black"><span class="text-main-color">New</span> arrivals</h1>
+      <div class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</div>
+      <div class="row">
+        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-3">
+          <div class="card-item bg-white">
+            <div class="face text-center">
+              <img class='w-75 mb-2 p-4' src="data\item-imgs\Samsung-Galaxy-S9-Lilac-Purple-2-3x.jpg" alt="">
+              <h4 class='text-main-black font-har-bold mb-3'>Samsung galexy s9</h4>
+              <div class="text-main-color font-har-bold p-4">250$</div>
+            </div>
+            <div class="back text-center">
+              <img class='w-50 mb-2 p-4' src="data\item-imgs\Samsung-Galaxy-S9-Lilac-Purple-2-3x.jpg" alt="">
+              <h4 class='text-main-black font-har-bold m-3'>Samsung galexy s9</h4>
+              <div class="colors">
+                <div class="text-center text-main-black font-har-regular m-3">
+                  Colors :-
+                </div>
+                <div class='bg-primary'></div>
+                <div class='bg-dark'></div>
+                <div class='bg-danger'></div>
+              </div>
+              <ul class='icons-options text-center my-3'>
+                <li><i class='far fa-heart'></i></li>
+                <li><i class='fa fa-shopping-cart text-main-color'></i></li>
+                <li><i class='fa fa-sync'></i></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <?php

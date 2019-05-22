@@ -380,6 +380,59 @@ li.nav-item.dropdown {
 }
 /* End Slider */
 /*********************************************************************/
+/* Start cards */
+.main-contain {
+  position: relative;
+  perspective: 1000px;
+  height: 410px;
+}
+.card-item {
+  transform-style: preserve-3d;
+  position: absolute;
+  transition: all 1s ease;
+  width: 87%;
+  height: 100%;
+  /* cursor: pointer; */
+}
+.face {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  backface-visibility: hidden;
+}
+.back {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+.card-item:hover {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 35px -20px var(--main-black);
+}
+.card-item .back .colors div:not(.text-center) {
+  border-radius: 50%;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+.card-item .back ul {
+  width: 100%;
+  height: 25px;
+  display: inline-block;
+  padding: 0;
+}
+.card-item .back ul li {
+  /* float: left; */
+  display: inline;
+  padding: 25px;
+  list-style: none;
+  cursor: pointer;
+}
+/* End cards */
+/*********************************************************************/
 /* Start Styleing Items */
 .item-title{
   line-height: 2em;
