@@ -31,16 +31,18 @@
       <h1 class="text-center text-uppercase mb-3 mt-3 font-har-black"><span class="text-main-color">New</span> arrivals</h1>
       <div class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</div>
       <div class="row">
+<?php if ( !empty( getgitems('items', 'WHERE approve = 1', 'udate', 'LIMIT 4') )): ?>
+  <?php foreach (getgitems('items', 'WHERE approve = 1', 'udate', 'LIMIT 4') as $item): ?>
         <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-3">
           <div class="card-item bg-white">
             <div class="face text-center">
-              <img class='w-75 mb-2 p-4' src="data\item-imgs\Samsung-Galaxy-S9-Lilac-Purple-2-3x.jpg" alt="">
-              <h4 class='text-main-black font-har-bold mb-3'>Samsung galexy s9</h4>
-              <div class="text-main-color font-har-bold p-4">250$</div>
+              <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
+              <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
             </div>
             <div class="back text-center">
-              <img class='w-50 mb-2 p-4' src="data\item-imgs\Samsung-Galaxy-S9-Lilac-Purple-2-3x.jpg" alt="">
-              <h4 class='text-main-black font-har-bold m-3'>Samsung galexy s9</h4>
+              <img class='w-50 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              <h4 class='text-main-black font-har-bold m-3'><?php echo $item[1]; ?></h4>
               <div class="colors">
                 <div class="text-center text-main-black font-har-regular m-3">
                   Colors :-
@@ -57,6 +59,8 @@
             </div>
           </div>
         </div>
+  <?php endforeach; ?>
+<?php endif; ?>
       </div>
     </div>
   </div>
