@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="section-1 mt-5 bg-light">
+    <div class="section-1 my-5 bg-light">
       <h1 class="text-center text-uppercase mb-3 mt-3 font-har-black"><span class="text-main-color">New</span> arrivals</h1>
       <div class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</div>
       <div class="row">
@@ -37,7 +37,7 @@
           <div class="card-item bg-white">
             <div class="face text-center">
               <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
-              <a href="item.php?itemid=<?php echo $item[0]; ?>"><h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4></a>
+              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
               <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
             </div>
             <div class="back text-center">
@@ -61,6 +61,62 @@
         </div>
   <?php endforeach; ?>
 <?php endif; ?>
+      </div>
+      <div class="controlers text-center mt-4">
+        <div class="m-auto" style="cursor: pointer; width: 50px;">
+          <div class="bullet m-0" style="background-color: var(--main-color)"></div>
+          <div class="bullet m-0" style="background-color: var(--main-color)"></div>
+          <div class="bullet m-0" style="background-color: var(--main-color)"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-2 my-5 bg-light">
+      <div class="row">
+        <div class="col-12 col-md-8 my-3">
+          <div class="offers bg-white">
+            <div class="row">
+              <div class="col-2">
+                <img class='img-fluid' src="data/uploads/sales-1.png" width="100px" height="100px" alt="Sales" srcset="data/uploads/sales-1.svg">
+              </div>
+              <div class="col-7 py-3 ml-3">
+                <div class="texty d-inline-block">
+                  <h4>Full Summer Kit</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="buyy text-center py-4">
+                  <i class='fa fa-shopping-cart text-main-color'></i>
+                  <div class="text-main-color d-inline-block font-har-bold" style="font-size: 30px;">120$</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 my-3">
+          <div class="service text-center bg-white">
+            <div class="">
+              <img class='img-fluid' src="data/uploads/aramex-logo.png" width="100px" height="100px" alt="Sales" srcset="data/uploads/aramex-logo.svg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-3 my-5 bg-light">
+      <div class="best-s text-center">
+        <h1 class="text-main-color font-har-black">Best <span class='text-main-black'>Sales</span></h1>
+        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
+        <div class="row">
+          <div class="">
+
+          </div>
+          <div class="">
+
+          </div>
+          <div class="">
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

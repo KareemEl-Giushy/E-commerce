@@ -461,6 +461,15 @@ li.nav-item.dropdown {
 }
 /* End cards */
 /*********************************************************************/
+/* Start offers */
+.offers, .service {
+  height: 98px;
+}
+.service div {
+  padding: 35px;
+}
+/* End offers */
+/********************************************************************/
 /* Start Styleing Items */
 .item-title{
   line-height: 2em;

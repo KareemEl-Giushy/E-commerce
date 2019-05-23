@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1 {
+        fill: #ffa273;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #ff7013;
+      }
+
+      .cls-3 {
+        font-size: 21px;
+        font-weight: 800;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #fff;
+        font-family: "Harmonia Sans Pro Cyr";
+      }
+
+      .cls-4 {
+        font-size: 13.997px;
+        font-style: italic;
+      }
+    </style>
+  </defs>
+  <path id="Sale_Bg" data-name="Sale Bg" class="cls-1" d="M231-.011L499.941,268.983,268.876,500.091-0.068,231.1Z"/>
+  <path id="Sale_Bg-2" data-name="Sale Bg" class="cls-2" d="M268.813,0.827L0.769,268.919,231.06,499.254,499.1,231.16Z"/>
+  <text id="Percent" class="cls-3" transform="matrix(5.356, 0, 0, 5.358, 135.604, 321.889)">%50</text>
+  <text id="Title" class="cls-4" transform="matrix(5.356, 0, 0, 5.358, 165.536, 198.656)">Sale</text>
+</svg>
