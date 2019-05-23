@@ -37,12 +37,12 @@
           <div class="card-item bg-white">
             <div class="face text-center">
               <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
-              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
+              <a href="item.php?itemid=<?php echo $item[0]; ?>"><h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4></a>
               <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
             </div>
             <div class="back text-center">
               <img class='w-50 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
-              <h4 class='text-main-black font-har-bold m-3'><?php echo $item[1]; ?></h4>
+              <a href="item.php?itemid=<?php echo $item[0]; ?>"><h4 class='text-main-black font-har-bold px-3'><?php echo $item[1]; ?></h4></a>
               <div class="colors">
                 <div class="text-center text-main-black font-har-regular m-3">
                   Colors :-
@@ -51,9 +51,9 @@
                 <div class='bg-dark'></div>
                 <div class='bg-danger'></div>
               </div>
-              <ul class='icons-options text-center my-3'>
+              <ul class='icons-options text-center mt-3'>
                 <li><i class='far fa-heart'></i></li>
-                <li><i class='fa fa-shopping-cart text-main-color'></i></li>
+                <li><a href="item.php?itemid=<?php echo $item[0]; ?>"><i class='fa fa-shopping-cart text-main-color'></i></a></li>
                 <li><i class='fa fa-sync'></i></li>
               </ul>
             </div>
