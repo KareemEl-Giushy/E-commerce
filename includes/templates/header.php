@@ -18,4 +18,4 @@
     <!-- Start Fonts -->
     <!-- End Fonts -->
   </head>
-  <body class="bg-light">
+  <body class="" style="background-color: #f4f6f8;">

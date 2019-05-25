@@ -129,6 +129,16 @@ input[type="password"] ~ .negma{
 .font-har-semibd {
   font-family: 'har-sans-semibd';
 }
+/* Hover Classes */
+.a-hover:hover {
+  color: var(--main-color);
+}
+/* Text limit */
+.text-limit {
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
 /* End Global */
 /*****************************************************/
 /* upper-bar */
@@ -469,6 +479,27 @@ li.nav-item.dropdown {
   padding: 35px;
 }
 /* End offers */
+/********************************************************************/
+/* Start best sales */
+.best-s {
+
+}
+.best-s .best-card div img {
+  width: 86px;
+  height: 138px;
+  object-fit: contain;
+}
+/* end best sales */
+/********************************************************************/
+/* Start encouraging signing up */
+.en-message {
+  padding-top: 21px;
+  padding-bottom: 8px;
+}
+.en-message h6 {
+
+}
+/* End encouraging signing up */
 /********************************************************************/
 /* Start Styleing Items */
 .item-title{

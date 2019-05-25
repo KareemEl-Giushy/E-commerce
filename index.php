@@ -103,18 +103,60 @@
       </div>
     </div>
     <div class="section-3 my-5 bg-light">
-      <div class="best-s text-center">
-        <h1 class="text-main-color font-har-black">Best <span class='text-main-black'>Sales</span></h1>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
+      <div class="best-s">
+        <div class="text-center mb-5">
+          <h1 class="text-main-color font-har-black">Best <span class='text-main-black'>Sales</span></h1>
+          <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed</p>
+        </div>
         <div class="row">
-          <div class="">
-
+<?php if( !empty( getgitems('items', 'WHERE approve = 1 AND `best-sale` = 1', 'price', 'LIMIT 3') ) ): ?>
+  <?php // print_r( getgitems('items', 'WHERE approve = 1 AND `best-sale` = 1', 'price', 'LIMIT 3') ); ?>
+  <?php foreach (getgitems('items', 'WHERE approve = 1 AND `best-sale` = 1', 'price', 'LIMIT 3') as $item): ?>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
+            <div class="best-card bg-white p-3">
+              <div class="row">
+                <div class="col-4">
+                  <img class="p-0 col-12" src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs') ?>" alt="<?php echo $item[1]; ?>">
+                </div>
+                <div class="col-8 text-center">
+                  <h5 class="d-inline-block col-12 mb-5 text-main-black font-har-bold text-limit"><?php echo $item[1]; ?></h5>
+                  <div class="float-right text-main-color font-har-bold"><?php echo $item[3]; ?></div>
+                  <div class=" text-main-color float-left font-har-bold"><a class='text-main-color a-hover' href='item.php?itemid=<?php echo $item[0]; ?>'><i class="fa fa-shopping-cart"></i> Add to cart</a></div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="">
-
+  <?php endforeach; ?>
+<?php endif; ?>
+        </div>
+      </div>
+    </div>
+    <div class="section-4 my-5 bg-light">
+      <div class="News bg-white">
+        <div class="row">
+          <div class="col-6">
+            <div class="en-message">
+              <h4 class="text-main-color d-inline-block mx-3 mb-0">New User ?</h6>
+              <p class='l-capital text-main-black d-inline-block m-0'>Sign Up now to get every new deal</p>
+            </div>
           </div>
-          <div class="">
-
+          <div class="col-6">
+            <div class="signing-b">
+              <div class="row">
+                <div class="col-6">
+                  <div class="m-3 text-center">
+                    <i class="far fa-envelope"></i>
+                    <input class='form-control' type="text" name="email" placeholder="Your Email">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="signin-btn text-center m-3 font-har-bold">
+                    <a class="text-white" href="login.php?act=signup-form">Sign Up</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
