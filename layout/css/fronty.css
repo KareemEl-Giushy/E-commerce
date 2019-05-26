@@ -489,6 +489,10 @@ li.nav-item.dropdown {
   height: 138px;
   object-fit: contain;
 }
+.section-3 .best-s .row div:nth-child(2) .best-card {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px -20px var(--main-black);
+}
 /* end best sales */
 /********************************************************************/
 /* Start encouraging signing up */
@@ -497,6 +501,30 @@ li.nav-item.dropdown {
   padding-bottom: 8px;
 }
 .en-message h6 {
+
+}
+.signing-b div .iconic {
+  height: 44px;
+  padding: 5px 0;
+  border-radius: 5px;
+  font-size: 20px;
+  background: var(--light);
+  border: 1px solid rgba(52, 64, 73, 0.18);
+}
+.signing-b div i {
+
+}
+.signing-b div input[type='email']:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 89, 18, 0.25);
+    border-color: #fbbca1;
+}
+/***** section-4 responsive *****/
+@media (min-width: 0) and (max-width: 576px) {
+  .signing-b div .email-pa {
+    padding-right: 15px !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px){
 
 }
 /* End encouraging signing up */

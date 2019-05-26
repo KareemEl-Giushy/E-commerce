@@ -135,24 +135,32 @@
     <div class="section-4 my-5 bg-light">
       <div class="News bg-white">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-lg-6">
             <div class="en-message">
-              <h4 class="text-main-color d-inline-block mx-3 mb-0">New User ?</h6>
-              <p class='l-capital text-main-black d-inline-block m-0'>Sign Up now to get every new deal</p>
+              <h4 class="text-main-color d-sm-inline-block mx-3 mb-0 text-center">New User ?</h6>
+              <p class='l-capital text-main-black d-sm-inline-block m-0 text-center'>Sign Up now to get every new deal</p>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-lg-6">
             <div class="signing-b">
               <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-sm-6">
                   <div class="m-3 text-center">
-                    <i class="far fa-envelope"></i>
-                    <input class='form-control' type="text" name="email" placeholder="Your Email">
+                    <div class="row">
+                      <div class="col-3 pr-0">
+                        <div class="iconic">
+                          <i class="text-main-color far fa-envelope"></i>
+                        </div>
+                      </div>
+                      <div class="col p-0 email-pa">
+                        <input class='form-control' style="height: 44px;" type="email" name="email" placeholder="Your Email">
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-sm-6">
                   <div class="signin-btn text-center m-3 font-har-bold">
-                    <a class="text-white" href="login.php?act=signup-form">Sign Up</a>
+                    <a class="text-white" href="">Sign Up</a>
                   </div>
                 </div>
               </div>
