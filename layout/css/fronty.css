@@ -376,17 +376,42 @@ li.nav-item.dropdown {
 .slider-body {
 
 }
-.controlers .bullet {
-  width: 10px;
-  height: 10px;
-  background-color: var(--main-black);
-  border-radius: 50%;
-  display: inline-block;
-  margin: 5px;
+.text-slider {
+  overflow: hidden;
+  position: relative;
+}
+.text-slider ul {
+  width: calc(100% * 7);
+  list-style: none;
+}
+.text-slider ul li {
+  width: calc(88% / 7);
+  height: 100%;
+  float: left;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+.text-slider .controlers {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text-slider .arrows-control .fa:first-of-type {
+  position: absolute;
+  left: 10px;
+  top: 33%;
   cursor: pointer;
 }
-.controlers .bullet.active {
-  background-color: #000;
+.text-slider .arrows-control .fa:last-of-type {
+  position: absolute;
+  right: 10px;
+  top: 33%;
+  cursor: pointer;
+}
+.text-slider div.controlers i.active:before, .text-slider div.controlers i:hover::before {
+    font-weight: 900;
+    cursor: pointer;
 }
 /* End Slider */
 /*********************************************************************/
@@ -408,12 +433,14 @@ li.nav-item.dropdown {
   position: absolute;
   width: 100%;
   height: auto;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 .back {
   position: absolute;
   width: 100%;
   height: auto;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: rotateY(180deg);
 }

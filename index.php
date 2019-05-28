@@ -7,23 +7,40 @@
   <div class="container-fluid bg-white">
     <div class="slider-body">
       <div class="row">
-        <div class="text-main-black col-6 text-center">
-          <h2 class="p-5">iPhone X Max</h2>
-          <p class='px-5 pb-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div class="signin-btn text-center m-auto font-har-bold w-25">
-            <a href="#" class="text-white"> See More</a>
+        <div class="text-slider col-6">
+          <ul>
+<?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
+  <?php $it = 0 ?>
+  <?php foreach (getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') as $item): ?>
+    <?php $it = $it + 1 ?>
+            <li>
+              <div class="text-main-black text-center">
+                <h2 class="p-5 text-limit"><?php echo $item['itemName']; ?></h2>
+                <p class='px-5 pb-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="signin-btn text-center m-auto font-har-bold w-25">
+                  <a href="item.php?id=<?php echo $item[0]; ?>" class="text-white"> See More</a>
+                </div>
+              </div>
+            </li>
+  <?php endforeach; ?>
+<?php endif; ?>
+          </ul>
+          <div class="arrows-control">
+            <i class='fa fa-angle-left fa-2x'></i>
+            <i class='fa fa-angle-right fa-2x'></i>
+          </div>
+          <div class="controlers text-center my-5">
+<?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
+  <?php for ($i = 0;$i < $it;$i++): ?>
+            <i class="far fa-circle"></i>
+  <?php endfor; ?>
+<?php endif; ?>
           </div>
         </div>
         <div class="img col-6 text-center">
           <img class="w-50 px-3 pt-5" src="data\item-imgs\Apple-iPhoneX-SpaceGray-1-3x.jpg" alt="iphonex">
         </div>
       </div>
-    </div>
-    <div class="controlers text-center mb-3">
-      <div class="bullet active"></div>
-      <div class="bullet"></div>
-      <div class="bullet"></div>
-      <div class="bullet"></div>
     </div>
   </div>
   <div class="container">
