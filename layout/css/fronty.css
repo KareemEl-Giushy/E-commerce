@@ -413,6 +413,20 @@ li.nav-item.dropdown {
     font-weight: 900;
     cursor: pointer;
 }
+.slider-body .image-cont {
+  overflow: hidden;
+  position: relative;
+  height: 485px
+}
+.slider-body .image-cont ul {
+  width: calc(100% * 7);
+  list-style-type: none;
+}
+.slider-body .image-cont ul li {
+  width: calc(88% / 7);
+  display: block;
+  height: 100%;
+}
 /* End Slider */
 /*********************************************************************/
 /* Start cards */

@@ -18,7 +18,7 @@
                 <h2 class="p-5 text-limit"><?php echo $item['itemName']; ?></h2>
                 <p class='px-5 pb-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <div class="signin-btn text-center m-auto font-har-bold w-25">
-                  <a href="item.php?id=<?php echo $item[0]; ?>" class="text-white"> See More</a>
+                  <a href="item.php?id=<?php echo $item[0]; ?>" target="_blank" class="text-white"> See More</a>
                 </div>
               </div>
             </li>
@@ -37,8 +37,18 @@
 <?php endif; ?>
           </div>
         </div>
-        <div class="img col-6 text-center">
-          <img class="w-50 px-3 pt-5" src="data\item-imgs\Apple-iPhoneX-SpaceGray-1-3x.jpg" alt="iphonex">
+        <div class="image-cont col-6 text-center">
+          <ul>
+<?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
+  <?php foreach (getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') as $item): ?>
+            <li>
+              <div class="img">
+                <img class="w-50 px-3 pt-5" src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              </div>
+            </li>
+  <?php endforeach; ?>
+<?php endif; ?>
+          </ul>
         </div>
       </div>
     </div>

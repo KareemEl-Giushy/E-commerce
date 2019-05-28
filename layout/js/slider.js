@@ -57,35 +57,34 @@ bullet.first().addClass('active');
       }
 
     }else {
-      // not Working
+
       if (clicked === true) {
         clicked = false;
 
         if ($('.text-slider ul li.active').is(':first-of-type')) {
-          // $('.text-slider ul li.active').removeClass('active');
-          $('.text-slider ul li').removeClass('active');
+          $('.text-slider ul li.active').removeClass('active');
           $('.text-slider ul li').last().addClass('active');
 
           ulItems.animate({
-            marginLeft: 0
+            marginLeft: -itemWidth * ($('.text-slider ul li.active').index())
           },function (){
             clicked = true;
           });
+          console.log('Sliding');
         }else {
 
           ulItems.animate({
-            marginLeft: itemWidth * ($('.text-slider ul li.active').index() + 1)
+            marginLeft: parseFloat( $('.text-slider ul').css('margin-left').slice(0, -2) ) + $('.text-slider ul li').innerWidth()
 
           }, sliderTime, function (){
             clicked = true;
           });
 
-          $('.text-slider ul li.active').removeClass('active').next().addClass('active');
+          $('.text-slider ul li.active').removeClass('active').prev().addClass('active');
         }
       }
-
-    console.log('run');
     }
+    console.log('run');
   }
 
   /*
@@ -118,7 +117,7 @@ bullet.first().addClass('active');
 
 //--- Clicking Funcs ----
   /*
-  ** left arrow click
+  ** Right arrow click
   ** By: Kareem
   ** Using: the Global Functions
   */
@@ -141,5 +140,32 @@ bullet.first().addClass('active');
     console.log('Switch-left');
   });
 //--- Bullets Funcs ---
+  bullet.on('click', function (){
+    bullet.removeClass('active');
+    $(this).addClass('active');
+    if ($(this).index() == 0) {
+      ulItems.animate({
+        marginLeft: 0
+      });
+    }
+    if ($(this).index() == controls.find('i:last-child').index()) {
+      ulItems.animate({
+        marginLeft: -$('.text-slider ul li').last().index() * itemWidth
+      });
+    }else {
 
+      if ($('.text-slider ul li.active').index() !== $(this).index()) {
+        console.log('condetion');
+        if (clicked === true) {
+
+          ulItems.animate({
+            marginLeft: -itemWidth * $(this).index()
+          });
+          console.log($(this).index());
+          console.log(-itemWidth * $(this).index());
+        }
+      }
+    }
+    // console.log($(this).index());
+  });
 });
