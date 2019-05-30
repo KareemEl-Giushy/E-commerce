@@ -1,6 +1,6 @@
-$(document).ready(function (){
 
 //--- All variabels ----
+
 //--- Items vars ----
   var ulItems = $(".text-slider ul");
   var item = $(".text-slider ul li");
@@ -12,8 +12,12 @@ $(document).ready(function (){
   var controlA = $(".arrows-control");
   var leftArrow = $(".arrows-control i:first-of-type");
   var rightArrow = $(".arrows-control i:last-of-type");
+//-- img vars ------
+  var ulImgs = $(".image-cont ul");
+  var img = ulImgs.find('li');
+  var imgWidth = img.innerWidth();
 //-- Global Vars ----
-  var sliderTime = 600;
+  var sliderTime = 800;
   var sliderDelay = 3000;
   var clicked = true;
   var autoPlay;
@@ -21,6 +25,7 @@ $(document).ready(function (){
 //-- adding active class dynamic ----
 item.first().addClass('active');
 bullet.first().addClass('active');
+img.first().addClass('active');
 //-- Global Funcs ---
 
   /*
@@ -114,6 +119,34 @@ bullet.first().addClass('active');
       console.log('Changed');
     }
   }
+/********************* Img-slider funcs ***********************/
+
+  // /*
+  // ** Running the img slider
+  // ** By: Kareem
+  // ** Using:
+  // */
+  // function runImgs (left = false){
+  //   console.log('activated');
+  //   if (clicked === true) {
+  //
+  //     clicked = false;
+  //
+  //     if (left === false) {
+  //
+  //       ulImgs.animate({
+  //         marginTop: -imgWidth * $('.image-cont ul li.active').index()
+  //       }, sliderTime, function (){
+  //         clicked = true;
+  //       });
+  //
+  //       $('.image-cont ul li.active').removeClass("active").next().addClass('active');
+  //     }
+  //   }
+  // }
+//--- End declearing ==================
+
+$(document).ready(function (){
 
 //--- Clicking Funcs ----
   /*
@@ -125,6 +158,29 @@ bullet.first().addClass('active');
     // console.log(clicked);
     addActive($('.controlers i.active'));
     runSlider();
+
+    // running the image slider
+    if ($('.image-cont ul li.active').is(":last-of-type")) {
+      console.log('img-last');
+      ulImgs.animate({
+        marginTop: 0
+      }, function (){
+        $('.image-cont ul li').last().removeClass("active");
+        img.first().addClass('active');
+      });
+    }else {
+      console.log('img-move');
+
+      ulImgs.animate({
+
+        marginTop: -imgWidth * ($('.image-cont ul li.active').index() + 1)
+
+      }, sliderTime, function (){
+
+        $('.image-cont ul li.active').removeClass("active").next().addClass('active');
+      });
+    }
+    // End running the image slider
     console.log('Switch-right');
   });
   /*
@@ -134,18 +190,41 @@ bullet.first().addClass('active');
   ** Status: Not Working Yet
   */
   leftArrow.on('click', function (){
-    // console.log(clicked);
+    console.log("clicked");
     addActive($('.controlers i.active'), true);
     runSlider(true);
+    // running the image slider
+    if ($('.image-cont ul li.active').is(":first-of-type")) {
+      console.log('img-first');
+      ulImgs.animate({
+        marginTop: -imgWidth * ($('.image-cont ul li').last().index())
+      }, function (){
+        $('.image-cont ul li').first().removeClass("active");
+        img.last().addClass('active');
+      });
+    }else {
+      console.log('img-move');
+
+      ulImgs.animate({
+
+        marginTop: parseFloat( $('.image-cont ul').css('margin-Top').slice(0, -2) ) + imgWidth
+
+      }, sliderTime, function (){
+
+        $('.image-cont ul li.active').removeClass("active").prev().addClass('active');
+      });
+    }
+    // End running the image slider
     console.log('Switch-left');
   });
 //--- Bullets Funcs ---
   bullet.on('click', function (){
-    bullet.removeClass('active');
-    $(this).addClass('active');
     if ($(this).index() == 0) {
       ulItems.animate({
         marginLeft: 0
+      });
+      ulImgs.animate({
+        marginTop: 0
       });
     }
     if ($(this).index() == controls.find('i:last-child').index()) {
@@ -166,6 +245,35 @@ bullet.first().addClass('active');
         }
       }
     }
+    // running the image slider
+    if ($(this).index() == controls.find('i:last-child').index()) {
+      ulImgs.animate({
+        marginTop: -$('.image-cont ul li').last().index() * imgWidth
+      });
+    }else {
+
+      if ($('.image-cont ul li.active').index() !== $(this).index()) {
+        console.log('condetion-image');
+        if (clicked === true) {
+
+          ulImgs.animate({
+            marginTop: -imgWidth * $(this).index()
+          });
+          console.log($(this).index());
+          console.log(-imgWidth * $(this).index());
+        }
+      }
+    }
     // console.log($(this).index());
   });
+//--------------------- AutoPlay ---------------------------------
+  function autoPlayy (){
+  autoPlay = setInterval(function() { rightArrow.click(); }, sliderDelay);
+
+  }
+  autoPlayy();
+
+// ======================== slider Hovering ==============
+controlA.find('i').on('mouseenter', function (){ clearInterval(autoPlay); console.log('mouse-Enter'); })
+  controlA.find('i').on('mouseleave', function (){ autoPlayy(); console.log('mouse-Leave'); })
 });
