@@ -441,9 +441,7 @@ li.nav-item.dropdown {
 }
 .card-item {
   transform-style: preserve-3d;
-  position: absolute;
   transition: all 1s ease;
-  width: 87%;
   height: 100%;
   /* cursor: pointer; */
 }
@@ -523,6 +521,17 @@ li.nav-item.dropdown {
 .service div {
   padding: 35px;
 }
+/*************** Section-2 Responsive ***************/
+@media (min-width: 0) and (max-width: 576px) {
+  .sales-img {
+    transform: scale(0.4);
+  }
+}
+@media (min-width: 768px) and (max-width: 992px){
+  .sales-img {
+    transform: scale(0.5);
+  }
+}
 /* End offers */
 /********************************************************************/
 /* Start best sales */
@@ -537,6 +546,11 @@ li.nav-item.dropdown {
 .section-3 .best-s .row div:nth-child(2) .best-card {
   transform: scale(1.1);
   box-shadow: 0 0 35px -20px var(--main-black);
+}
+@media (min-width: 0) and (max-width: 576px) {
+  .section-3 .best-s .row div:nth-child(2) .best-card {
+    transform: scale(1.001);
+  }
 }
 /* end best sales */
 /********************************************************************/

@@ -103,15 +103,15 @@
           <div class="offers bg-white">
             <div class="row">
               <div class="col-2">
-                <img class='img-fluid' src="data/uploads/sales-1.png" width="100px" height="100px" alt="Sales" srcset="data/uploads/sales-1.svg">
+                <img class='p-1 sales-img' src="data/uploads/sales-1.png" width="100px" height="100px" alt="Sales" srcset="data/uploads/sales-1.svg">
               </div>
-              <div class="col-7 py-3 ml-3">
+              <div class="col-6 col-sm-7 py-3 ml-3">
                 <div class="texty d-inline-block">
                   <h4>Full Summer Kit</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p class="d-none d-sm-inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
               </div>
-              <div class="col-2">
+              <div class="col-3 col-sm-2">
                 <div class="buyy text-center py-4">
                   <i class='fa fa-shopping-cart text-main-color'></i>
                   <div class="text-main-color d-inline-block font-har-bold" style="font-size: 30px;">120$</div>
