@@ -4,7 +4,7 @@
 //--- Items vars ----
   var ulItems = $(".text-slider ul");
   var item = $(".text-slider ul li");
-  var itemWidth = item.innerWidth();
+  // var itemWidth = item.innerWidth();
 //--- Icons ---
   var controls = $(".controlers");
   var bullet = controls.find('i');
@@ -15,7 +15,7 @@
 //-- img vars ------
   var ulImgs = $(".image-cont ul");
   var img = ulImgs.find('li');
-  var imgWidth = img.innerWidth();
+  // var imgWidth = img.innerWidth();
 //-- Global Vars ----
   var sliderTime = 800;
   var sliderDelay = 3000;
@@ -51,7 +51,7 @@ img.first().addClass('active');
         }else {
 
           ulItems.animate({
-            marginLeft: -itemWidth * ($('.text-slider ul li.active').index() + 1)
+            marginLeft: -item.innerWidth() * ($('.text-slider ul li.active').index() + 1)
 
           }, sliderTime, function (){
             clicked = true;
@@ -71,7 +71,7 @@ img.first().addClass('active');
           $('.text-slider ul li').last().addClass('active');
 
           ulItems.animate({
-            marginLeft: -itemWidth * ($('.text-slider ul li.active').index())
+            marginLeft: -item.innerWidth() * ($('.text-slider ul li.active').index())
           },function (){
             clicked = true;
           });
@@ -135,7 +135,7 @@ img.first().addClass('active');
   //     if (left === false) {
   //
   //       ulImgs.animate({
-  //         marginTop: -imgWidth * $('.image-cont ul li.active').index()
+  //         marginTop: -img.innerWidth() * $('.image-cont ul li.active').index()
   //       }, sliderTime, function (){
   //         clicked = true;
   //       });
@@ -144,17 +144,7 @@ img.first().addClass('active');
   //     }
   //   }
   // }
-//--- End declearing ==================
-
-$(document).ready(function (){
-
-//--- Clicking Funcs ----
-  /*
-  ** Right arrow click
-  ** By: Kareem
-  ** Using: the Global Functions
-  */
-  rightArrow.on('click', function (){
+  function clicker(){
     // console.log(clicked);
     addActive($('.controlers i.active'));
     runSlider();
@@ -173,7 +163,7 @@ $(document).ready(function (){
 
       ulImgs.animate({
 
-        marginTop: -imgWidth * ($('.image-cont ul li.active').index() + 1)
+        marginTop: -img.innerWidth() * ($('.image-cont ul li.active').index() + 1)
 
       }, sliderTime, function (){
 
@@ -182,6 +172,19 @@ $(document).ready(function (){
     }
     // End running the image slider
     console.log('Switch-right');
+  }
+//--- End declearing ==================
+
+$(document).ready(function (){
+
+//--- Clicking Funcs ----
+  /*
+  ** Right arrow click
+  ** By: Kareem
+  ** Using: the Global Functions
+  */
+  rightArrow.on('click', function (){
+    clicker();
   });
   /*
   ** left arrow click
@@ -197,7 +200,7 @@ $(document).ready(function (){
     if ($('.image-cont ul li.active').is(":first-of-type")) {
       console.log('img-first');
       ulImgs.animate({
-        marginTop: -imgWidth * ($('.image-cont ul li').last().index())
+        marginTop: -img.innerWidth() * ($('.image-cont ul li').last().index())
       }, function (){
         $('.image-cont ul li').first().removeClass("active");
         img.last().addClass('active');
@@ -207,7 +210,7 @@ $(document).ready(function (){
 
       ulImgs.animate({
 
-        marginTop: parseFloat( $('.image-cont ul').css('margin-Top').slice(0, -2) ) + imgWidth
+        marginTop: parseFloat( $('.image-cont ul').css('margin-Top').slice(0, -2) ) + img.innerWidth()
 
       }, sliderTime, function (){
 
@@ -229,7 +232,7 @@ $(document).ready(function (){
     }
     if ($(this).index() == controls.find('i:last-child').index()) {
       ulItems.animate({
-        marginLeft: -$('.text-slider ul li').last().index() * itemWidth
+        marginLeft: -$('.text-slider ul li').last().index() * item.innerWidth()
       });
     }else {
 
@@ -238,17 +241,17 @@ $(document).ready(function (){
         if (clicked === true) {
 
           ulItems.animate({
-            marginLeft: -itemWidth * $(this).index()
+            marginLeft: -item.innerWidth() * $(this).index()
           });
           console.log($(this).index());
-          console.log(-itemWidth * $(this).index());
+          console.log(-item.innerWidth() * $(this).index());
         }
       }
     }
     // running the image slider
     if ($(this).index() == controls.find('i:last-child').index()) {
       ulImgs.animate({
-        marginTop: -$('.image-cont ul li').last().index() * imgWidth
+        marginTop: -$('.image-cont ul li').last().index() * img.innerWidth()
       });
     }else {
 
@@ -257,10 +260,10 @@ $(document).ready(function (){
         if (clicked === true) {
 
           ulImgs.animate({
-            marginTop: -imgWidth * $(this).index()
+            marginTop: -img.innerWidth() * $(this).index()
           });
           console.log($(this).index());
-          console.log(-imgWidth * $(this).index());
+          console.log(-img.innerWidth() * $(this).index());
         }
       }
     }
@@ -268,7 +271,7 @@ $(document).ready(function (){
   });
 //--------------------- AutoPlay ---------------------------------
   function autoPlayy (){
-  autoPlay = setInterval(function() { rightArrow.click(); }, sliderDelay);
+  autoPlay = setInterval(function() { clicker(); }, sliderDelay);
 
   }
   autoPlayy();

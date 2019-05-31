@@ -235,11 +235,11 @@ input[type="password"] ~ .negma{
   position: absolute;
   overflow: hidden;
   /* left: 15px; */
-  left: 78px;
+  left: 67px;
   top: -28px;
 }
 .up-arrow:last-of-type {
-  left: 85px;
+  left: 110px;
 }
 .up-arrow::after {
   content: '';
@@ -329,8 +329,8 @@ li.nav-item.dropdown {
   color: var(--main-color);
   border-radius: 50%;
   position: absolute;
-  top: 17px;
-  left: -8px;
+  top: 32%;
+  left: 37%;
   line-height: 1.01023em;
   display: inline-block;
   font-weight: 500;
@@ -352,6 +352,9 @@ li.nav-item.dropdown {
   .cart a span {
     position: unset;
   }
+  nav .kd {
+    display: block;
+  }
 }
 @media (min-width: 768px) and (max-width: 992px){
   .cates-card-body .up-arrow {
@@ -368,6 +371,9 @@ li.nav-item.dropdown {
   }
   .cart a span {
     position: unset;
+  }
+  nav .kd {
+    display: block;
   }
 }
 /* end navbar responsive */

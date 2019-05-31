@@ -7,7 +7,7 @@
   <div class="container-fluid bg-white">
     <div class="slider-body">
       <div class="row">
-        <div class="text-slider col-6">
+        <div class="text-slider col-12 col-md-6">
           <ul>
 <?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
   <?php $it = 0 ?>
@@ -37,7 +37,7 @@
 <?php endif; ?>
           </div>
         </div>
-        <div class="image-cont col-6 text-center">
+        <div class="image-cont col-12 col-md-6 text-center">
           <ul>
 <?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
   <?php foreach (getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') as $item): ?>

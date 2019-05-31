@@ -48,67 +48,69 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0 col col-lg-9 pl-0">
-          <input class="form-control mr-sm-2 col-lg-10 col-md-9 col-sm-9 col-12" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-secondary my-2 my-sm-0 col col-lg-1" type="submit"><i class='fa fa-search'></i></button>
-        </form>
-        <ul class="navbar-nav mr-auto">
-          <div class="row">
-            <?php if (isset($_SESSION['fnorname']) && isset($_SESSION['norid'])): ?>
-              <li class="nav-item dropdown px-4 col-6 col-lg-9 px-lg-0">
-                <a class="nav-link dropdown-toggle px-1 l-capital" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
-                  <?php echo explode(' ',$_SESSION['fnorname'])[0]; ?>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <div class="up-arrow"></div>
-                  <a class="dropdown-item" href="profile.php">Profile</a>
-                <?php if (checkuserstatus($_SESSION['norid']) == true): ?>
-                  <a class="dropdown-item" href="new_item.php">Add new item</a>
-                <?php else: ?>
-                  <a class="dropdown-item disabled" style="cursor: not-allowed" href="#">Add new item</a>
-                <?php endif; ?>
-                  <a class="dropdown-item" href="settings.php">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout.php">Logout</a>
+        <div class="row col m-0">
+          <form class="form-inline my-2 my-lg-0 col col-lg-7 col-xl-8 pl-0 pr-0 pr-lg-3">
+            <input class="form-control mr-sm-2 col-lg-10 col-md-9 col-sm-9 col-12" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary my-2 my-sm-0 col col-lg" type="submit"><i class='fa fa-search'></i></button>
+          </form>
+          <ul class="navbar-nav mr-auto col-12 col-md-12 col-lg">
+            <div class="row kd">
+              <?php if (isset($_SESSION['fnorname']) && isset($_SESSION['norid'])): ?>
+                <li class="nav-item dropdown float-left">
+                  <a class="nav-link dropdown-toggle px-1 l-capital" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                    <?php echo explode(' ',$_SESSION['fnorname'])[0]; ?>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="up-arrow"></div>
+                    <a class="dropdown-item" href="profile.php">Profile</a>
+                  <?php if (checkuserstatus($_SESSION['norid']) == true): ?>
+                    <a class="dropdown-item" href="new_item.php">Add new item</a>
+                  <?php else: ?>
+                    <a class="dropdown-item disabled" style="cursor: not-allowed" href="#">Add new item</a>
+                  <?php endif; ?>
+                    <a class="dropdown-item" href="settings.php">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                  </div>
+                </li>
+              <?php else: ?>
+                <li class="nav-item dropdown float-left">
+                  <a class="nav-link dropdown-toggle px-1 text-main-black font-har-regular" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                    Your Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -21%;">
+                    <div class="up-arrow"></div>
+                    <div class="downdroping font-har-regular" href="#">New Customer ?</div>
+                    <div class="signin-btn text-center m-3 font-har-bold">
+                      <a href="login.php?act=signup-form" class="text-white">Sign Up</a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="downdroping text-center font-har-regular" href="#">Already Here <a href="login.php" class="text-main-color d-block d-sm-inline-block">login</a></div>
+                  </div>
+                </li>
+              <?php endif; ?>
+                <li class="nav-item dropdown float-right">
+                  <div class="cart col pl-0">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class='fa fa-shopping-cart fa-2x p-1'></i>
+                    <span class="text-center"><?php echo 0; ?></span>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="up-arrow"></div>
+                    Not Yet
+                    <!--<div class="downdroping" href="#">New Customer ?</div>
+                    <div class="signin-btn text-center m-3">
+                      <a href="login.php?act=signup-form" class="">Sign Up</a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="downdroping text-center" href="#">Already Here <a href="login.php">login</a></div>-->
+                  </div>
                 </div>
               </li>
-            <?php else: ?>
-              <li class="nav-item dropdown px-4 col-6 col-lg-9 px-lg-0">
-                <a class="nav-link dropdown-toggle px-1 text-main-black font-har-regular" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
-                  Your Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <div class="up-arrow"></div>
-                  <div class="downdroping font-har-regular" href="#">New Customer ?</div>
-                  <div class="signin-btn text-center m-3 font-har-bold">
-                    <a href="login.php?act=signup-form" class="text-white">Sign Up</a>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <div class="downdroping text-center font-har-regular" href="#">Already Here <a href="login.php" class="text-main-color d-block d-sm-inline-block">login</a></div>
-                </div>
-              </li>
-            <?php endif; ?>
-              <li class="nav-item dropdown pl-0 col-6 col-lg-3">
-                <div class="cart col pl-0">
-                <a class="nav-link float-right" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class='fa fa-shopping-cart fa-2x p-1'></i>
-                  <span class="text-center"><?php echo 0; ?></span>
-                </a>
-                <div class="clearfix"></div>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <div class="up-arrow"></div>
-                  Not Yet
-                  <!--<div class="downdroping" href="#">New Customer ?</div>
-                  <div class="signin-btn text-center m-3">
-                    <a href="login.php?act=signup-form" class="">Sign Up</a>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <div class="downdroping text-center" href="#">Already Here <a href="login.php">login</a></div>-->
-                </div>
-              </div>
-            </li>
-          </div>
-        </ul>
+              <div class="clearfix"></div>
+            </div>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
