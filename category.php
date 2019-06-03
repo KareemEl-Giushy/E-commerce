@@ -26,6 +26,27 @@
   <div class="container">
     <h1 class="text-center l-capital mb-5 mt-3"><?php echo opened_func("SELECT cname FROM categories WHERE cid = " . $_GET['pageid'])[0][0]; ?></h1>
     <div class="row">
+      <div class="widgets col-12 col-sm-12 col-md-12 col-lg-3">
+        <form class="" action="" method="post">
+          <aside class="">
+            <div class="price-filter bg-white p-4 w-100 mb-3">
+              <h5 class="text-main-color font-har-black">Price Filter</h5>
+                <div id='ranger' name="price" class="my-4"></div>
+                <div class="form-group">
+                  <span class='text-main-black font-har-semibd'>From</span><input class='d-inline mx-2 form-control p-1 w-25' name='from' type="text"><span class='text-main-black font-har-semibd'>To</span><input type="text" class='d-inline mx-2 form-control p-1 w-25' name='to'>
+                </div>
+            </div>
+            <div class="brand bg-white p-4 w-100 mb-3">
+
+            </div>
+            <div class="size bg-white p-4 w-100 mb-3">
+
+            </div>
+          </aside>
+        </form>
+      </div>
+      <div class="products col-12 col-sm-12 col-md-12 col-lg">
+        <div class="row">
 
 <?php
     if (!empty(getgitems('items', "WHERE cat_id = " . $_GET['pageid'] . " AND approve = 1", 'itemid', 'DESC'))){
@@ -34,29 +55,41 @@
       // print_r(getgitems('items', "WHERE cat_id = " . $_GET['pageid'] . " AND approve = 1", 'itemid', 'DESC'));
       // echo "</pre>";
 
-      foreach (getgitems('items', "WHERE cat_id = " . $_GET['pageid'] . " AND approve = 1", 'itemid', 'DESC') as $item) {
-        echo "<div class='col col-sm-12 col-md-4 col-lg-4'>";
-          echo "<div class='card mb-3'>";
-            echo "<div class='card-header'>";
-              echo "<h5 class='card-text text-center'>$item[3]</h5>";
-            echo "</div>";
-            echo "<div class='card-text date-tag'>" . $item[4] . "</div>";
-            echo "<img class='card-img-top img-fluid item-img' src='" . getimg("SELECT `item-img` FROM items WHERE itemid = " . $item[0], 'item-imgs') . "' alt='$item[1]'/>";
-            echo "<div class='card-body'>";
-              echo "<h6 class='card-title item-title'>" . $item[1] . "</h6>";
-              echo "<p class='card-text item-desc'>" . $item[2] . "</p>";
-              echo "<div class='card-footer'>";
-              echo "<a class='btn btn-primary d-block' href='item.php?itemid=$item[0]'>View</a>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-      }
+      foreach (getgitems('items', "WHERE cat_id = " . $_GET['pageid'] . " AND approve = 1", 'itemid', 'DESC') as $item): ?>
+        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+          <div class="card-item bg-white">
+            <div class="face text-center">
+              <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
+              <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
+            </div>
+            <div class="back text-center">
+              <img class='w-50 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              <a href="item.php?itemid=<?php echo $item[0]; ?>"><h4 class='text-main-black font-har-bold px-3'><?php echo $item[1]; ?></h4></a>
+              <div class="colors">
+                <div class="text-center text-main-black font-har-regular m-3">
+                  Colors :-
+                </div>
+                <div class='bg-primary'></div>
+                <div class='bg-dark'></div>
+                <div class='bg-danger'></div>
+              </div>
+              <ul class='icons-options text-center mt-3'>
+                <li><i class='far fa-heart' title='Love'></i></li>
+                <li><a href="item.php?itemid=<?php echo $item[0]; ?>"><i class='fa fa-shopping-cart text-main-color'></i></a></li>
+                <li><i class='fa fa-sync' title='reporting'></i></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+<?php
     }else {
       echo "<div class='alert alert-info l-capital text-center col-12'>This category is <strong>empty</strong></div>";
       echo "<div class='col text-center mt-3'><a class='btn btn-info col-12 col-sm-12 col-md-3' href='index.php'>Go Home?</a></div>";
     } ?>
-
+        </div>
+      </div>
     </div>
   </div>
 <?php
@@ -66,30 +99,30 @@
     <div class="container">
       <h1 class="text-center l-capital mb-5 mt-3"><?php echo '#' . $tag; ?></h1>
       <div class="row">
-        <?php
-            if (!empty(opened_func("SELECT * FROM items WHERE tags LIKE '%{$tag}%' AND approve = 1 ORDER BY itemid DESC"))){
-              foreach (opened_func("SELECT * FROM items WHERE tags LIKE '%{$tag}%' AND approve = 1 ORDER BY itemid DESC") as $item) {
-                echo "<div class='col col-sm-12 col-md-4 col-lg-4'>";
-                  echo "<div class='card mb-3'>";
-                    echo "<div class='card-header'>";
-                      echo "<h5 class='card-text text-center'>$item[3]</h5>";
-                    echo "</div>";
-                    echo "<div class='card-text date-tag'>" . $item[4] . "</div>";
-                    echo "<img class='card-img-top img-fluid item-img' src='" . getimg("SELECT `item-img` FROM items WHERE itemid = " . $item[0], 'item-imgs') . "' alt='$item[1]'/>";
-                    echo "<div class='card-body'>";
-                      echo "<h6 class='card-title item-title'>" . $item[1] . "</h6>";
-                      echo "<p class='card-text item-desc'>" . $item[2] . "</p>";
-                      echo "<div class='card-footer'>";
-                      echo "<a class='btn btn-primary d-block' href='item.php?itemid=$item[0]'>View</a>";
-                      echo "</div>";
-                    echo "</div>";
-                  echo "</div>";
-                echo "</div>";
-              }
-            }else {
-              echo "<div class='alert alert-info l-capital text-center col-12'>This category is <strong>empty</strong></div>";
-              echo "<div class='col text-center mt-3'><a class='btn btn-info col-12 col-sm-12 col-md-3' href='index.php'>Go Home?</a></div>";
-            } ?>
+<?php
+        if (!empty(opened_func("SELECT * FROM items WHERE tags LIKE '%{$tag}%' AND approve = 1 ORDER BY itemid DESC"))):
+          foreach (opened_func("SELECT * FROM items WHERE tags LIKE '%{$tag}%' AND approve = 1 ORDER BY itemid DESC") as $item): ?>
+                <div class='col col-sm-12 col-md-4 col-lg-4'>
+                  <div class='card mb-3'>
+                    <div class='card-header'>
+                      <h5 class='card-text text-center'><?php echo $item[3]; ?></h5>
+                    </div>
+                    <div class='card-text date-tag'><?php echo $item[4]; ?></div>
+                    <img class='card-img-top img-fluid item-img' src='<?php getimg("SELECT `item-img` FROM items WHERE itemid = " . $item[0], 'item-imgs'); ?>' alt='<?php echo $item[1]; ?>'/>
+                    <div class='card-body'>
+                      <h6 class='card-title item-title'><?php echo $item[1]; ?></h6>
+                      <p class='card-text item-desc'><?php echo $item[2]; ?></p>
+                      <div class='card-footer'>
+                      <a class='btn btn-primary d-block' href='item.php?itemid=<?php echo $item[0]; ?>'>View</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach;?>
+            <?php else: ?>
+              <div class='alert alert-info l-capital text-center col-12'>This category is <strong>empty</strong></div>
+              <div class='col text-center mt-3'><a class='btn btn-info col-12 col-sm-12 col-md-3' href='index.php'>Go Home?</a></div>
+            <?php endif; ?>
       </div>
     </div>
 <?php

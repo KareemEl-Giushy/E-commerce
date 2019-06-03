@@ -60,7 +60,7 @@
       <div class="row">
 <?php if ( !empty( getgitems('items', 'WHERE approve = 1', 'udate', 'LIMIT 4') )): ?>
   <?php foreach (getgitems('items', 'WHERE approve = 1', 'udate', 'LIMIT 4') as $item): ?>
-        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-3">
+        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
           <div class="card-item bg-white">
             <div class="face text-center">
               <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">

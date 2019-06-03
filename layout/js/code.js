@@ -97,4 +97,27 @@ $(function (){
       $('.cates-card-body').css('display', 'inline-block');
     }
   });
+
+  /*
+  ** Making a range slider with jquery
+  ** By: Kareem
+  ** Using: jRange
+  */
+  $('#ranger').slider({
+    range: true,
+    animate: 'fast',
+    min: 0,
+    max: 500,
+    values: [75, 300],
+    step: 5
+  });
+  document.querySelector("input[name=from]").value = $('#ranger').slider('option').values[0] + '$';
+  document.querySelector("input[name=to]").value = $('#ranger').slider('option').values[1] + '$';
+  // var cleaner = setInterval(function (){ it was an option
+
+  $('#ranger').on('slide', function (){
+      document.querySelector("input[name=from]").value = $('#ranger').slider('option').values[0] + '$';
+      document.querySelector("input[name=to]").value = $('#ranger').slider('option').values[1] + '$';
+    });
+    // }, 1);
 });

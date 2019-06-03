@@ -330,7 +330,7 @@ li.nav-item.dropdown {
   border-radius: 50%;
   position: absolute;
   top: 32%;
-  left: 37%;
+  left: 35%;
   line-height: 1.01023em;
   display: inline-block;
   font-weight: 500;
@@ -439,6 +439,34 @@ li.nav-item.dropdown {
 }
 /* End Slider */
 /*********************************************************************/
+.widgets {
+
+}
+.widgets aside {
+
+}
+.widgets aside .price-filter {
+
+}
+#ranger {
+  border-radius: 0;
+  border: none;
+  background-color: #eeeeee;
+  font-size: 10px;
+}
+#ranger > div {
+  background-color: var(--main-black);
+}
+#ranger span {
+  background-color: var(--main-black);
+  border: none;
+  border-radius: 50%;
+  width: 1.7em;
+  height: 1.7em;
+  top: -0.6em;
+  outline: 0;
+}
+/********************************************************************/
 /* Start cards */
 .main-contain {
   position: relative;

@@ -41,7 +41,7 @@
         </div>
       </div>
       <a class="navbar-brand col-lg-2 col-sm-2 col-6 mx-xl-0 pl-0 font-weight-bold text-secondary text-center" href="index.php">
-        <img src="data/uploads/logo.png" alt="eCommerce">
+        <img src="data/uploads/logo.PNG" alt="eCommerce">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
