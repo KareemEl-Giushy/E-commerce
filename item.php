@@ -31,46 +31,79 @@
     exit();
   }
   // print_r($iteminfo); ?>
-<div class="container mt-5">
-  <div class="row">
-    <div class="photo col-12 col-sm-12 col-md-5 col-lg-5 border-right border-secondary p-3">
-      <img class="img-thumbnail" src="<?php echo getimg("SELECT `item-img` FROM items WHERE itemid = " . $iteminfo[0], 'item-imgs'); ?>" alt="<?php echo $iteminfo[1]; ?>">
-    </div>
-    <div class="col">
-      <h2 class="text-left p-2 h2 mb-3"><?php echo $iteminfo[1]; ?></h2>
-      <div class="description">
-        <h5 class="mb-3">Description :</h5>
-        <p>- <?php echo $iteminfo[2]; ?></p>
-      </div>
-      <div class="footer">
-        <ul class="list-group">
-          <li class="l-capital list-group-item"><i class="fa fa-building fa-fw"></i> made in : <?php echo $iteminfo[5]; ?></li>
-          <li class="l-capital list-group-item"><i class="fa fa-cog fa-fw"></i> Status : <?php echo $iteminfo[7]; ?></li>
-          <li class="l-capital list-group-item"><i class="fa fa-calendar fa-fw"></i> date : <?php echo $iteminfo[4]; ?></li>
-          <li class="l-capital list-group-item"><i class="fa fa-money fa-fw"></i> price : <?php echo str_replace("$", "", $iteminfo[3]); ?>$</li>
-          <li class="l-capital list-group-item">
-            <div class="row">
-              <span class="col-6"><i class="fa fa-tags fa-fw"></i> Category : <a class="" href='Category.php?pageid=<?php echo $iteminfo[10]; ?>&pagename=<?php echo str_replace(" ", "-", $iteminfo[13]); ?>' target='_blank'><?php echo $iteminfo[13]; ?></a></span>
-              |
-              <span class="col"><i class="fa fa-user fa-fw"></i> publisher : <a class="" href='#' target='_blank'><?php echo $iteminfo[14]; ?></a></span>
+<div class="bg-white pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="photo col-12 col-sm-12 col-md-5 col-lg-5 border-right border-secondary p-3">
+        <div class="row">
+          <div class="col-2 bg-light p-0">
+            <div class="imgs-strip">
+              <ul>
+<?php if (!empty( opened_func('SELECT `item-img` FROM items WHERE itemid = ' . $iteminfo[0]) )): ?>
+  <?php
+    // print_r (opened_func('SELECT `item-img` FROM items WHERE itemid = ' . $iteminfo[0]));
+    // echo (opened_func('SELECT `item-img` FROM items WHERE itemid = ' . $iteminfo[0])[0][0]);
+    $item_imgs = array_slice(explode(',', opened_func('SELECT `item-img` FROM items WHERE itemid = ' . $iteminfo[0])[0][0] ), 0, 3); ?>
+  <?php foreach ($item_imgs as $img): ?>
+                <li class=""><img class="w-100" src="data/item-imgs/<?php echo $img; ?>"/></li>
+  <?php endforeach; ?>
+<?php endif; ?>
+                <div class="clearfix"></div>
+              </ul>
             </div>
-          </li>
-          <?php if ( !empty( $iteminfo[12] ) ): ?>
-            <li class="list-group-item"><i class="fa fa-tags fa-fw"></i> Tags: <?php
-            $tags = explode(',', $iteminfo[12]);
-            foreach($tags as $tag){
-              $tag = strtolower( str_replace(' ', '', $tag) );
-              echo "<a href='category.php?name={$tag}' target='_blank'>" . $tag . "</a> | ";
-            } ?></li>
-          <?php endif; ?>
-        </ul>
-        <form class="" action="" method="post">
-          <input type="hidden" name="itemidcart" value="<?php echo $itemid; ?>">
-          <input type="submit" class="btn btn-primary mt-3 col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;" value="Add To My Cart">
-        </form>
+          </div>
+          <div class="col">
+            <img class="img-thumbnail" id='item-photo' src="data/item-imgs/<?php echo $item_imgs[0]; ?>" alt="<?php echo $iteminfo[1]; ?>">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h2 class="text-left p-2 h2 mb-3"><?php echo $iteminfo[1]; ?></h2>
+        <div class="description">
+          <h5 class="mb-3">Description :</h5>
+          <p>- <?php echo $iteminfo[2]; ?></p>
+        </div>
+        <div class="footer">
+          <ul class="list-group">
+            <li class="l-capital list-group-item"><i class="fa fa-building fa-fw"></i> made in : <?php echo $iteminfo[5]; ?></li>
+            <li class="l-capital list-group-item"><i class="fa fa-cog fa-fw"></i> Status : <?php echo $iteminfo[7]; ?></li>
+            <li class="l-capital list-group-item"><i class="fa fa-calendar fa-fw"></i> date : <?php echo $iteminfo[4]; ?></li>
+            <!-- <li class="l-capital list-group-item"><i class="fa fa-dollar-sign fa-fw"></i> price : <?php echo str_replace("$", "", $iteminfo[3]); ?>$</li> -->
+            <li class="l-capital list-group-item">
+              <div class="row">
+                <span class="col-6"><i class="fa fa-tags fa-fw"></i> Category : <a class="" href='Category.php?pageid=<?php echo $iteminfo['Cat_ID']; ?>&pagename=<?php echo str_replace(" ", "-", $iteminfo['catename']); ?>' target='_blank'><?php echo $iteminfo['catename']; ?></a></span>
+                |
+                <span class="col"><i class="fa fa-user fa-fw"></i> publisher : <a class="" href='#' target='_blank'><?php echo $iteminfo['Username']; ?></a></span>
+              </div>
+            </li>
+            <?php if ( !empty( $iteminfo[12] ) ): ?>
+              <li class="list-group-item"><i class="fa fa-tags fa-fw"></i> Tags: <?php
+              $tags = explode(',', $iteminfo[12]);
+              foreach($tags as $tag){
+                $tag = strtolower( str_replace(' ', '', $tag) );
+                echo "<a href='category.php?name={$tag}' target='_blank'>" . $tag . "</a> | ";
+              } ?></li>
+            <?php endif; ?>
+          </ul>
+          <form class="" action="" method="post">
+            <input type="hidden" name="itemidcart" value="<?php echo $itemid; ?>">
+            <div class="row">
+              <div class="col-6 my-3">
+                price: <span><?php echo str_replace("$", "", $iteminfo[3]); ?>$</span>
+              </div>
+              <div class="col-6 my-3">
+                <span class=""><i class=""></i></span>
+                <span class=""><i class=""></i></span>
+                <input type="submit" class="btn btn-primary col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;" value="Add To My Cart">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div class="container">
   <hr class="bg-secondary mt-5 mb-3">
   <!-- add comment section -->
 <?php if (isset($_SESSION['norid']) && !empty($_SESSION['norid'])): ?>

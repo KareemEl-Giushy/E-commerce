@@ -706,6 +706,40 @@ li.nav-item.dropdown {
 .login-btn:hover, .signup-btn:hover{
   background-color: #EEE;
 }
+/******************************************************************/
+/* Start item.php */
+.imgs-strip ul {
+  list-style: none;
+  display: block;
+  padding: 0;
+}
+.imgs-strip ul li {
+  position: relative;
+  width: 100%;
+  /* border: 1px solid #000; */
+  margin: 0 0 2px 0;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+}
+.imgs-strip ul li img {
+  object-fit: contain;
+}
+.imgs-strip ul li.activated::before, .imgs-strip ul li:hover::before {
+  content: '';
+  background-color: var(--main-color);
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+/* End item.php */
+/******************************************************************/
 /* login and sign up responsive */
 
 /* profile */

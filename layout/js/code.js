@@ -99,4 +99,21 @@ $(function (){
   });
 
 
+  /*
+  ** let the user Choose item img
+  ** By: Kareem
+  ** Using: getting and setting attributes
+  */
+  // adding the class
+  $(".imgs-strip ul li").first().addClass('activated');
+
+  // adding event listener
+  $(".imgs-strip ul li").on('click', function (){
+    $(".imgs-strip ul li").removeClass('activated');
+    $(this).addClass('activated');
+    var nextImg = $(".imgs-strip ul li.activated img").attr('src');
+    $("#item-photo").attr('src', nextImg);
+    // console.log(nextImg);
+  });
+
 });
