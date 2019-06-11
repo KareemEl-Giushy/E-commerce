@@ -79,7 +79,7 @@ function opened_func($thequery){
 }
 
 
-// display imgs function
+// display imgs function --V 2.0
 function getimg($thequery, $file = 'profile-imgs'){
   if (empty( opened_func($thequery)[0][0] )){
     return "data/default.png";
@@ -87,7 +87,12 @@ function getimg($thequery, $file = 'profile-imgs'){
     if (file_exists("data/$file/" . opened_func($thequery)[0][0])) {
       return "data/$file/" . opened_func($thequery)[0][0];
     }else {
-      return "data/default.png";
+      $item_imgs = array_slice(explode(',', opened_func($thequery)[0][0] ), 0, 3);
+      if ( file_exists("data/$file/" . $item_imgs[0]) ) {
+        return "data/$file/" . $item_imgs[0];
+      }else {
+        return "data/default.png";
+      }
     }
   }
 }
