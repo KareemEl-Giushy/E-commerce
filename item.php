@@ -31,12 +31,12 @@
     exit();
   }
   // print_r($iteminfo); ?>
-<div class="bg-white pt-5">
+<div class="bg-white py-5">
   <div class="container">
     <div class="row">
       <div class="photo col-12 col-sm-12 col-md-5 col-lg-5 border-right border-secondary p-3">
         <div class="row">
-          <div class="col-2 bg-light p-0">
+          <div class="col-2 col-lg-2 col-xl-1 bg-light p-0">
             <div class="imgs-strip">
               <ul>
 <?php if (!empty( opened_func('SELECT `item-img` FROM items WHERE itemid = ' . $iteminfo[0]) )): ?>
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="col">
-            <img class="img-thumbnail" id='item-photo' src="data/item-imgs/<?php echo $item_imgs[0]; ?>" alt="<?php echo $iteminfo[1]; ?>">
+            <img class="img-thumbnail" style="border: none;border-radius: 0;" id='item-photo' src="data/item-imgs/<?php echo $item_imgs[0]; ?>" alt="<?php echo $iteminfo[1]; ?>">
           </div>
         </div>
       </div>
@@ -71,9 +71,9 @@
             <!-- <li class="l-capital list-group-item"><i class="fa fa-dollar-sign fa-fw"></i> price : <?php echo str_replace("$", "", $iteminfo[3]); ?>$</li> -->
             <li class="l-capital list-group-item">
               <div class="row">
-                <span class="col-6"><i class="fa fa-tags fa-fw"></i> Category : <a class="" href='Category.php?pageid=<?php echo $iteminfo['Cat_ID']; ?>&pagename=<?php echo str_replace(" ", "-", $iteminfo['catename']); ?>' target='_blank'><?php echo $iteminfo['catename']; ?></a></span>
+                <span class="col-6"><i class="fa fa-tags fa-fw"></i> Category : <a class="text-main-color a-hover" href='Category.php?pageid=<?php echo $iteminfo['Cat_ID']; ?>&pagename=<?php echo str_replace(" ", "-", $iteminfo['catename']); ?>' target='_blank'><?php echo $iteminfo['catename']; ?></a></span>
                 |
-                <span class="col"><i class="fa fa-user fa-fw"></i> publisher : <a class="" href='#' target='_blank'><?php echo $iteminfo['Username']; ?></a></span>
+                <span class="col"><i class="fa fa-user fa-fw"></i> publisher : <a class="text-main-color a-hover" href='#' target='_blank'><?php echo $iteminfo['Username']; ?></a></span>
               </div>
             </li>
             <?php if ( !empty( $iteminfo[12] ) ): ?>
@@ -81,20 +81,21 @@
               $tags = explode(',', $iteminfo[12]);
               foreach($tags as $tag){
                 $tag = strtolower( str_replace(' ', '', $tag) );
-                echo "<a href='category.php?name={$tag}' target='_blank'>" . $tag . "</a> | ";
+                echo "<a class='text-main-color a-hover' href='category.php?name={$tag}' target='_blank'>" . $tag . "</a> | ";
               } ?></li>
             <?php endif; ?>
           </ul>
           <form class="" action="" method="post">
             <input type="hidden" name="itemidcart" value="<?php echo $itemid; ?>">
             <div class="row">
-              <div class="col-6 my-3">
+              <div class="text-center text-lg-left col-md-12 col-lg-5 my-3 text-md-center l-capital font-weight-bold py-0 px-3 font-har-black" style='font-size: 25px;'>
                 price: <span><?php echo str_replace("$", "", $iteminfo[3]); ?>$</span>
               </div>
-              <div class="col-6 my-3">
-                <span class=""><i class=""></i></span>
-                <span class=""><i class=""></i></span>
-                <input type="submit" class="btn btn-primary col-12 col-sm-12 col-md-6 float-right" style="font-weight: 500;" value="Add To My Cart">
+              <div class="col-md-12 col-lg my-3">
+                <a href="" class="d-inline-block d-sm-inline-block float-md-none float-lg-right p-2 text-main-black buy-icons"><i class="fa fa-sync"></i></a>
+                <a href="" class="d-inline-block float-right float-sm-right d-sm-inline-block float-md-none float-lg-right p-2 text-main-color buy-icons ml-2"><i class="far fa-heart"></i></a>
+                <input type="submit" class="btn btn-primary col-12 col-sm-12 col-md-6 text-md-center float-lg-right bg-main-color btn-new-style p-2" style="font-weight: 500;" value="Add To My Cart">
+                <div class='clearfix'></div>
               </div>
             </div>
           </form>

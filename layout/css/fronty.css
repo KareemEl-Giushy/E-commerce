@@ -131,13 +131,38 @@ input[type="password"] ~ .negma{
 }
 /* Hover Classes */
 .a-hover:hover {
-  color: var(--main-color);
+  color: #e24d0e;
 }
 /* Text limit */
 .text-limit {
   line-height: 1.5em;
   height: 3em;
   overflow: hidden;
+}
+/* Global Styles */
+.btn-new-style {
+  background-color: var(--main-color);
+  color: #FFF;
+  border-color: var(--main-color);
+}
+.btn-new-style:hover {
+  background-color: #e24d0e !important;
+
+  border-color: #e24d0e;
+}
+.btn-new-style:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 89, 18, .5) !important;
+}
+.btn-new-style:active {
+  background-color: #e24d0e !important;
+  border-color: #e24d0e !important;
+}
+.btn-outline-main-color:active {
+  background-color: #e24d0e !important;
+  border-color: #e24d0e !important;
+}
+.btn-outline-main-color:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 89, 18, .5) !important;
 }
 /* End Global */
 /*****************************************************/
@@ -708,6 +733,7 @@ li.nav-item.dropdown {
 }
 /******************************************************************/
 /* Start item.php */
+/* Image Style */
 .imgs-strip ul {
   list-style: none;
   display: block;
@@ -738,6 +764,22 @@ li.nav-item.dropdown {
   opacity: 0.7;
   transition: all 0.5s;
 }
+/* End Image Style */
+/* Start Buttons & Links */
+a.buy-icons:first-of-type {
+  color: var(--main-black);
+}
+a.buy-icons:first-of-type:hover, a.buy-icons:first-of-type:hover i {
+  color: var(--main-color)
+}
+a.buy-icons:last-of-type {
+  color: var(--main-color)
+}
+a.buy-icons:last-of-type:hover, a.buy-icons:last-of-type:hover i {
+  font-weight: 900;
+  color: var(--main-color);
+}
+/* End Buttons & Links */
 /* End item.php */
 /******************************************************************/
 /* login and sign up responsive */

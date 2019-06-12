@@ -51,7 +51,7 @@
         <div class="row col m-0">
           <form class="form-inline my-2 my-lg-0 col col-lg-7 col-xl-8 pl-0 pr-0 pr-lg-3">
             <input class="form-control mr-sm-2 col-lg-10 col-md-9 col-sm-9 col-12" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0 col col-lg" type="submit"><i class='fa fa-search'></i></button>
+            <button class="btn btn-outline-secondary btn-outline-main-color my-2 my-sm-0 col col-lg" type="submit"><i class='fa fa-search'></i></button>
           </form>
           <ul class="navbar-nav mr-auto col-12 col-md-12 col-lg">
             <div class="row kd">
