@@ -119,7 +119,7 @@
           <div class="card-item bg-white">
             <div class="face text-center">
               <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
-              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
+              <h4 class='text-main-black font-har-bold mb-3 px-2'><?php echo $item[1]; ?></h4>
               <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
             </div>
             <div class="back text-center">

@@ -139,8 +139,8 @@
       exit();
     }
   } ?>
-
-<div class="container login-signup" style="height: 625px;">
+<div class="bg-white py-5">
+<div class="container login-signup" style="height: auto; min-height: 580px;">
   <div class="m-auto col-12 col-sm-12 col-md-9 col-lg-9">
     <div class="row mt-4">
       <!-- the buttons -->
@@ -154,7 +154,7 @@
       <!-- The Forms -->
       <div class="login" style="<?php if($act == 'login-form'){echo "display: block";}else{echo 'display: none';} ?>">
         <h2 class="text-center mb-3 mt-3 l-capital">Login</h2>
-        <form class="form-group m-auto w-50" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <form class="form-group m-auto col-12 col-sm-12 col-md-8 col-lg-6 h-75" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
           <div class="form-row mb-3">
             <label class="col col-form-label">Username</label>
             <input class='form-control col-12' type="text" name="uname" placeholder="Username"/>
@@ -163,7 +163,7 @@
             <label class="col col-form-label">Password</label>
             <input class='form-control col-12' type="password" name="pass" placeholder="The Password"/>
           </div>
-          <input type="submit" class="form-control col-12 col-sm-12 col-lg-6 m-auto d-block" name='login' value="Login" style="cursor: pointer;">
+          <input type="submit" class="form-control col-12 col-sm-12 col-lg-6 mx-auto d-block my-5" name='login' value="Login" style="cursor: pointer;">
           <?php if (isset($rowcount) && $rowcount <= 0) {
                   echo "<div class='alert alert-danger text-center l-capital mt-3'><strong>* invalid</strong> Username or password</div>";
                 }
@@ -174,7 +174,7 @@
       </div>
       <div class="signup" style="<?php if($act == 'login-form'){echo "display: none";} ?>">
         <h2 class="text-center mb-3 mt-3 l-capital">Sign UP</h2>
-        <form class="form-group m-auto w-75" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <form class="form-group m-auto w-75 h-75" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
           <div class="form-row mb-3 mt-5">
             <label class="col col-form-label">Full Name</label>
             <span class="small-negma">*</span>
@@ -223,7 +223,7 @@
       </div>
   </div>
 </div>
-
+</div>
 <?php
   include "includes/templates/footer.html";
   ob_end_flush(); ?>

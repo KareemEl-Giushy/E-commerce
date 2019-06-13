@@ -104,6 +104,47 @@
     </div>
   </div>
 </div>
+<?php if (!empty( getgitems('items', "WHERE cat_id = " . $iteminfo["Cat_ID"], 'itemid', 'LIMIT 4') )): ?>
+<div class="container">
+  <h1 class="text-center text-uppercase mb-3 mt-5 font-har-black"><span class="text-main-color">related</span> items</h1>
+  <div class="text-center mb-5 font-har-regular">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</div>
+  <div class="row">
+    <?php foreach ( getgitems('items', "WHERE cat_id = " . $iteminfo["Cat_ID"] . " AND approve = 1", 'itemid', 'LIMIT 4') as $r_item): ?>
+      <?php if (countitem('itemid', 'items', "WHERE cat_id = " . $iteminfo['Cat_ID'] . " AND approve = 1 LIMIT 4") == 4 ): ?>
+        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-3 my-lg-5 mb-3">
+      <?php else: ?>
+        <div class="main-contain col-12 col-sm-12 col-md-6 col-lg-4 my-lg-5 mb-3">
+      <?php endif; ?>
+        <div class="card-item bg-white">
+          <div class="face text-center">
+            <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $r_item[0], 'item-imgs'); ?>" alt="<?php echo $r_item[1]; ?>">
+            <h4 class='text-main-black font-har-bold mb-3 px-2'><?php echo $r_item[1]; ?></h4>
+            <div class="text-main-color font-har-bold p-4"><?php echo $r_item[3]; ?></div>
+          </div>
+          <div class="back text-center">
+            <img class='w-50 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $r_item[0], 'item-imgs'); ?>" alt="<?php echo $r_item[1]; ?>">
+            <a href="item.php?itemid=<?php echo $r_item[0]; ?>"><h4 class='text-main-black font-har-bold px-3'><?php echo $r_item[1]; ?></h4></a>
+            <div class="colors">
+              <div class="text-center text-main-black font-har-regular m-3">
+                Colors :-
+              </div>
+              <div class='bg-primary'></div>
+              <div class='bg-dark'></div>
+              <div class='bg-danger'></div>
+            </div>
+            <ul class='icons-options text-center mt-3'>
+              <li><i class='far fa-heart' title='Love'></i></li>
+              <li><a href="item.php?itemid=<?php echo $r_item[0]; ?>"><i class='fa fa-shopping-cart text-main-color'></i></a></li>
+              <li><i class='fa fa-sync' title='reporting'></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+<?php endif; ?>
+<div class="bg-white pt-5 mt-5">
 <div class="container">
   <hr class="bg-secondary mt-5 mb-3">
   <!-- add comment section -->
@@ -154,7 +195,7 @@
 <?php endif; ?>
   <hr class="bg-secondary mt-3 mb-3">
   <!-- the comments bar -->
-  <div class="row">
+  <div class="row bg-white">
 <?php
 
         //get the comments and the users
@@ -168,19 +209,20 @@
         // echo "</pre>";
 
         foreach ($item_comments as $item_comment) {
-          echo "<div class='col-12 col-sm-12 col-md-3 pt-4 pb-3'>";
+          echo "<div class='col-4 col-sm-4 col-md-3 col-lg-2 pt-4 pb-3'>";
             echo "<div>";
-              echo "<img class='img-thumbnail img-fluid rounded-circle user-img col-5 col-sm-5 col-md-10' src='" . getimg("SELECT `profile-img` FROM users WHERE userid = " . $item_comment[7]) . "' alt='$item_comment[0]'>";
+              echo "<img class='img-thumbnail img-fluid border-0 user-img col' src='" . getimg("SELECT `profile-img` FROM users WHERE userid = " . $item_comment[7]) . "' alt='$item_comment[0]'>";
             echo "</div>";
             echo "<div class='col'>" . "<a href='#'>" . $item_comment[0] . "</a>" . "</div>";
             echo "<div class='col'>" . $item_comment[3] . "</div>";
           echo "</div>";
-          echo "<div class='col-12 col-sm-12 col-md-9 pt-5 pb-3'>";
+          echo "<div class='col pt-5 pb-3'>";
             echo $item_comment[2] . "<br>";
           echo "</div>";
-          echo "<hr class='bg-light col-12'>";
+          echo "<div class='col-12 p-0'><hr class='bg-light'></div>";
         } ?>
   </div>
+</div>
 </div>
 <?php
   include "includes/templates/footer.html";

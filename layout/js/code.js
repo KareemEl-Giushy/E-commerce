@@ -36,7 +36,8 @@ $(function (){
 /*I putted the two functions inside each other just like event listener*/
     $('.signup-btn').click(function (){
       if ($('.login-btn').hasClass('clickedy')){
-        $('.login-signup').css('height', '625px');
+        // $('.login-siginup').css('min-height', '580px');
+        // $('.login-signup').css('height', 'auto');
         $('.signup-btn').addClass('clickedy');
         $('.login-btn').removeClass('clickedy');
         $('.login').hide(0,function (){
@@ -48,7 +49,7 @@ $(function (){
 
   $('.login-btn').click(function (){
     if ($('.signup-btn').hasClass('clickedy')){
-      $('.login-signup').css('height', '625px');
+      // $('.login-signup').css('height', '580px');
       $('.login-btn').addClass('clickedy');
       $('.signup-btn').removeClass('clickedy');
       $('.signup').hide(0,function (){

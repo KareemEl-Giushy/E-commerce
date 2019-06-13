@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="section-1 my-5 bg-light">
+    <div class="section-1 my-5">
       <h1 class="text-center text-uppercase mb-3 mt-3 font-har-black"><span class="text-main-color">New</span> arrivals</h1>
       <div class="text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</div>
       <div class="row">
@@ -64,7 +64,7 @@
           <div class="card-item bg-white">
             <div class="face text-center">
               <img class='w-75 mb-2 p-4' src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
-              <h4 class='text-main-black font-har-bold mb-3'><?php echo $item[1]; ?></h4>
+              <h4 class='text-main-black font-har-bold mb-3 px-2'><?php echo $item[1]; ?></h4>
               <div class="text-main-color font-har-bold p-4"><?php echo $item[3]; ?></div>
             </div>
             <div class="back text-center">
@@ -97,7 +97,7 @@
         </div>
       </div>
     </div>
-    <div class="section-2 my-5 bg-light">
+    <div class="section-2 my-5">
       <div class="row">
         <div class="col-12 col-md-8 my-3">
           <div class="offers bg-white">
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div class="section-3 my-5 bg-light">
+    <div class="section-3 my-5">
       <div class="best-s">
         <div class="text-center mb-5">
           <h1 class="text-main-color font-har-black">Best <span class='text-main-black'>Sales</span></h1>
@@ -159,7 +159,7 @@
         </div>
       </div>
     </div>
-    <div class="section-4 my-5 bg-light">
+    <div class="section-4 my-5">
       <div class="News bg-white">
         <div class="row">
           <div class="col-12 col-lg-6">

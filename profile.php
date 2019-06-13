@@ -23,9 +23,9 @@
     <div class="alert alert-warning l-capital"><i class="fa fa-exclamation-triangle"></i> Your account is't activated yet. It will be activated soon.</div>
   <?php endif; ?>
   <div class="row">
-      <div class="col-12 col-sm-12 col-md-5 col-lg-3">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-3 mt-3">
         <div class="d-flex d-sm-flex d-md-inline justify-content-center">
-          <div class="profile-img col-12 col-sm-6 col-md-12 col-lg-12 mb-3 border p-2">
+          <div class="profile-img col-12 col-sm-6 col-md-12 col-lg-12 mb-3 border p-2 bg-white">
             <a href="profile.php">
               <img class="img-fluid img-thumbnail p-0" src="<?php echo getimg("SELECT `profile-img` FROM users WHERE userid = " . $_SESSION['norid']); ?>" alt="<?php echo $_SESSION['noruser']; ?>" title="<?php echo ucwords($_SESSION['fnorname']); ?>">
             </a>

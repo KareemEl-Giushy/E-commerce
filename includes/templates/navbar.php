@@ -57,20 +57,20 @@
             <div class="row kd">
               <?php if (isset($_SESSION['fnorname']) && isset($_SESSION['norid'])): ?>
                 <li class="nav-item dropdown float-left">
-                  <a class="nav-link dropdown-toggle px-1 l-capital" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
+                  <a class="nav-link dropdown-toggle px-1 text-main-black font-har-regular" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 1em;">
                     <?php echo explode(' ',$_SESSION['fnorname'])[0]; ?>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="up-arrow"></div>
-                    <a class="dropdown-item" href="profile.php">Profile</a>
+                    <a class="dropdown-item font-har-regular nav-profile-item" href="profile.php">Profile</a>
                   <?php if (checkuserstatus($_SESSION['norid']) == true): ?>
-                    <a class="dropdown-item" href="new_item.php">Add new item</a>
+                    <a class="dropdown-item font-har-regular nav-profile-item" href="new_item.php">Add new item</a>
                   <?php else: ?>
-                    <a class="dropdown-item disabled" style="cursor: not-allowed" href="#">Add new item</a>
+                    <a class="dropdown-item disabled font-har-regular" style="cursor: not-allowed" href="#">Add new item</a>
                   <?php endif; ?>
-                    <a class="dropdown-item" href="settings.php">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php">Logout</a>
+                    <a class="dropdown-item font-har-regular nav-profile-item" href="settings.php">Settings</a>
+                    <div class="dropdown-divider font-har-regular nav-profile-item"></div>
+                    <a class="dropdown-item font-har-regular nav-profile-item" href="logout.php">Logout</a>
                   </div>
                 </li>
               <?php else: ?>
