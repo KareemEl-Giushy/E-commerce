@@ -5,9 +5,9 @@
   include "includes/templates/header.php";
   include "includes/templates/navbar.php"; ?>
   <div class="container-fluid bg-white">
-    <div class="slider-body">
+    <div class="slider-body py-5">
       <div class="row">
-        <div class="text-slider col-12 col-md-6">
+        <div class="text-slider col-12 col-md-6 order-2 order-md-1">
           <ul>
 <?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
   <?php $it = 0 ?>
@@ -37,13 +37,13 @@
 <?php endif; ?>
           </div>
         </div>
-        <div class="image-cont col-12 col-md-6 text-center">
+        <div class="image-cont col-12 col-md-6 text-center order-1 order-md-2">
           <ul>
 <?php if ( !empty( getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') ) ): ?>
   <?php foreach (getgitems('items', 'WHERE approve = 1 AND slider = 1', 'price', 'LIMIT 4') as $item): ?>
             <li>
-              <div class="img">
-                <img class="w-50 px-3 pt-5" src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
+              <div class="img h-100">
+                <img class="w-50 h-100 px-3 pt-5" src="<?php echo getimg('SELECT `item-img` FROM items WHERE itemid = ' . $item[0], 'item-imgs'); ?>" alt="<?php echo $item[1]; ?>">
               </div>
             </li>
   <?php endforeach; ?>

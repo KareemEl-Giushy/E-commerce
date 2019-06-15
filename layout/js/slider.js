@@ -163,7 +163,7 @@ img.first().addClass('active');
 
       ulImgs.animate({
 
-        marginTop: -img.innerWidth() * ($('.image-cont ul li.active').index() + 1)
+        marginTop: -img.innerHeight() * ($('.image-cont ul li.active').index() + 1)
 
       }, sliderTime, function (){
 
@@ -200,7 +200,7 @@ $(document).ready(function (){
     if ($('.image-cont ul li.active').is(":first-of-type")) {
       console.log('img-first');
       ulImgs.animate({
-        marginTop: -img.innerWidth() * ($('.image-cont ul li').last().index())
+        marginTop: -img.innerHeight() * ($('.image-cont ul li').last().index())
       }, function (){
         $('.image-cont ul li').first().removeClass("active");
         img.last().addClass('active');
@@ -210,7 +210,7 @@ $(document).ready(function (){
 
       ulImgs.animate({
 
-        marginTop: parseFloat( $('.image-cont ul').css('margin-Top').slice(0, -2) ) + img.innerWidth()
+        marginTop: parseFloat( $('.image-cont ul').css('margin-Top').slice(0, -2) ) + img.innerHeight()
 
       }, sliderTime, function (){
 
@@ -251,7 +251,7 @@ $(document).ready(function (){
     // running the image slider
     if ($(this).index() == controls.find('i:last-child').index()) {
       ulImgs.animate({
-        marginTop: -$('.image-cont ul li').last().index() * img.innerWidth()
+        marginTop: -$('.image-cont ul li').last().index() * img.innerHeight()
       });
     }else {
 
@@ -260,10 +260,10 @@ $(document).ready(function (){
         if (clicked === true) {
 
           ulImgs.animate({
-            marginTop: -img.innerWidth() * $(this).index()
+            marginTop: -img.innerHeight() * $(this).index()
           });
           console.log($(this).index());
-          console.log(-img.innerWidth() * $(this).index());
+          console.log(-img.innerHeight() * $(this).index());
         }
       }
     }
